@@ -1,0 +1,19 @@
+import 'package:freezed_annotation/freezed_annotation.dart';
+
+import 'package:xtendly_test/home/domain/category.dart';
+part 'item.freezed.dart';
+
+@freezed
+class Item with _$Item {
+  const Item._();
+  const factory Item({
+    required String name,
+    required String description,
+    required double price,
+    double? discount,
+    required String image,
+    @Default([]) required List<Category>? categories,
+  }) = _Item;
+
+  factory Item.fromJson(Map<String, dynamic> json) => _$ItemFromJson(json);
+}
