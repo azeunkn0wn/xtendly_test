@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:responsive_framework/responsive_framework.dart';
-import 'package:xtendly_test/home_page.dart';
+
+import 'package:xtendly_test/home/presentation/home_page.dart';
 
 class AppWidget extends StatelessWidget {
   const AppWidget({super.key});
@@ -46,7 +47,6 @@ class AppWidget extends StatelessWidget {
     );
 
     return ThemeData(
-      colorSchemeSeed: const Color(0xFFFFFFFF),
       useMaterial3: true,
       brightness: Brightness.light,
       canvasColor: const Color(0xFFFFFFFF),
