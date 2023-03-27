@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
 
-void main() {
-  runApp(const Placeholder());
-}
+import 'package:xtendly_test/app_widget.dart';
+
+void main() => runApp(const AppWidget());
