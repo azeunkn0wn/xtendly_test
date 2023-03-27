@@ -1,0 +1,134 @@
+[
+    {
+        "name": "Lorem ipsum",
+        "description": "Lorem ipsum",
+        "price": 0.0,
+        "discount": 0.15,
+        "image": "assets/images/1.png",
+        "categories": [
+            {
+                "name": "Sweatshirts"
+            },
+            {
+                "name": "Pair"
+            }
+        ]
+    },
+    {
+        "name": "Lorem ipsum",
+        "description": "Lorem ipsum",
+        "price": 0.0,
+        "discount": 0.15,
+        "image": "assets/images/1.png",
+        "categories": [
+            {
+                "name": "Sweatshirts"
+            },
+            {
+                "name": "Pair"
+            }
+        ]
+    },
+    {
+        "name": "Lorem ipsum",
+        "description": "Lorem ipsum",
+        "price": 0.0,
+        "discount": 0.15,
+        "image": "assets/images/1.png",
+        "categories": [
+            {
+                "name": "Sweatshirts"
+            },
+            {
+                "name": "Pair"
+            }
+        ]
+    },
+    {
+        "name": "Lorem ipsum",
+        "description": "Lorem ipsum",
+        "price": 0.0,
+        "discount": 0.15,
+        "image": "assets/images/1.png",
+        "categories": [
+            {
+                "name": "Sweatshirts"
+            },
+            {
+                "name": "Pair"
+            }
+        ]
+    },
+    {
+        "name": "Lorem ipsum",
+        "description": "Lorem ipsum",
+        "price": 0.0,
+        "discount": 0.15,
+        "image": "assets/images/1.png",
+        "categories": [
+            {
+                "name": "Sweatshirts"
+            },
+            {
+                "name": "Pair"
+            }
+        ]
+    },
+    {
+        "name": "Lorem ipsum",
+        "description": "Lorem ipsum",
+        "price": 0.0,
+        "discount": 0.15,
+        "image": "assets/images/1.png",
+        "categories": [
+            {
+                "name": "Sweatshirts"
+            },
+            {
+                "name": "Pair"
+            }
+        ]
+    },
+    {
+        "name": "Lorem ipsum",
+        "description": "Lorem ipsum",
+        "price": 0.0,
+        "discount": 0.15,
+        "image": "assets/images/1.png",
+        "categories": [
+            {
+                "name": "Sweatshirts"
+            },
+            {
+                "name": "Pair"
+            }
+        ]
+    },
+    {
+        "name": "Lorem ipsum",
+        "description": "Lorem ipsum",
+        "price": 0.0,
+        "discount": 0.15,
+        "image": "assets/images/1.png",
+        "categories": [
+            {
+                "name": "Sweatshirts"
+            },
+            {
+                "name": "Pair"
+            }
+        ]
+    },
+    {
+        "name": "Lorem ipsum",
+        "description": "Lorem ipsum",
+        "price": 0.0,
+        "discount": 0.0,
+        "image": "assets/images/2.png",
+        "categories": [
+            {
+                "name": "Hoodies"
+            }
+        ]
+    }
+]
