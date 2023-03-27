@@ -12,8 +12,6 @@ class Item with _$Item {
     required double price,
     double? discount,
     required String image,
-    @Default([]) required List<Category>? categories,
+    List<Category>? categories,
   }) = _Item;
-
-  factory Item.fromJson(Map<String, dynamic> json) => _$ItemFromJson(json);
 }

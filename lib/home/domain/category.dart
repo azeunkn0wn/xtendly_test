@@ -7,7 +7,4 @@ class Category with _$Category {
   const factory Category({
     required String name,
   }) = _Category;
-
-  factory Category.fromJson(Map<String, dynamic> json) =>
-      _$CategoryFromJson(json);
 }

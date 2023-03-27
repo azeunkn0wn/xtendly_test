@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'item.dart';
+part of 'item_dto.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -14,23 +14,29 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
+ItemDTO _$ItemDTOFromJson(Map<String, dynamic> json) {
+  return _ItemDTO.fromJson(json);
+}
+
 /// @nodoc
-mixin _$Item {
+mixin _$ItemDTO {
   String get name => throw _privateConstructorUsedError;
   String get description => throw _privateConstructorUsedError;
   double get price => throw _privateConstructorUsedError;
   double? get discount => throw _privateConstructorUsedError;
   String get image => throw _privateConstructorUsedError;
-  List<Category>? get categories => throw _privateConstructorUsedError;
+  @JsonKey(fromJson: _categoriesFromJson)
+  List<CategoryDTO>? get categories => throw _privateConstructorUsedError;
 
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $ItemCopyWith<Item> get copyWith => throw _privateConstructorUsedError;
+  $ItemDTOCopyWith<ItemDTO> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $ItemCopyWith<$Res> {
-  factory $ItemCopyWith(Item value, $Res Function(Item) then) =
-      _$ItemCopyWithImpl<$Res, Item>;
+abstract class $ItemDTOCopyWith<$Res> {
+  factory $ItemDTOCopyWith(ItemDTO value, $Res Function(ItemDTO) then) =
+      _$ItemDTOCopyWithImpl<$Res, ItemDTO>;
   @useResult
   $Res call(
       {String name,
@@ -38,13 +44,13 @@ abstract class $ItemCopyWith<$Res> {
       double price,
       double? discount,
       String image,
-      List<Category>? categories});
+      @JsonKey(fromJson: _categoriesFromJson) List<CategoryDTO>? categories});
 }
 
 /// @nodoc
-class _$ItemCopyWithImpl<$Res, $Val extends Item>
-    implements $ItemCopyWith<$Res> {
-  _$ItemCopyWithImpl(this._value, this._then);
+class _$ItemDTOCopyWithImpl<$Res, $Val extends ItemDTO>
+    implements $ItemDTOCopyWith<$Res> {
+  _$ItemDTOCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -85,15 +91,16 @@ class _$ItemCopyWithImpl<$Res, $Val extends Item>
       categories: freezed == categories
           ? _value.categories
           : categories // ignore: cast_nullable_to_non_nullable
-              as List<Category>?,
+              as List<CategoryDTO>?,
     ) as $Val);
   }
 }
 
 /// @nodoc
-abstract class _$$_ItemCopyWith<$Res> implements $ItemCopyWith<$Res> {
-  factory _$$_ItemCopyWith(_$_Item value, $Res Function(_$_Item) then) =
-      __$$_ItemCopyWithImpl<$Res>;
+abstract class _$$_ItemDTOCopyWith<$Res> implements $ItemDTOCopyWith<$Res> {
+  factory _$$_ItemDTOCopyWith(
+          _$_ItemDTO value, $Res Function(_$_ItemDTO) then) =
+      __$$_ItemDTOCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -102,13 +109,14 @@ abstract class _$$_ItemCopyWith<$Res> implements $ItemCopyWith<$Res> {
       double price,
       double? discount,
       String image,
-      List<Category>? categories});
+      @JsonKey(fromJson: _categoriesFromJson) List<CategoryDTO>? categories});
 }
 
 /// @nodoc
-class __$$_ItemCopyWithImpl<$Res> extends _$ItemCopyWithImpl<$Res, _$_Item>
-    implements _$$_ItemCopyWith<$Res> {
-  __$$_ItemCopyWithImpl(_$_Item _value, $Res Function(_$_Item) _then)
+class __$$_ItemDTOCopyWithImpl<$Res>
+    extends _$ItemDTOCopyWithImpl<$Res, _$_ItemDTO>
+    implements _$$_ItemDTOCopyWith<$Res> {
+  __$$_ItemDTOCopyWithImpl(_$_ItemDTO _value, $Res Function(_$_ItemDTO) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -121,7 +129,7 @@ class __$$_ItemCopyWithImpl<$Res> extends _$ItemCopyWithImpl<$Res, _$_Item>
     Object? image = null,
     Object? categories = freezed,
   }) {
-    return _then(_$_Item(
+    return _then(_$_ItemDTO(
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -145,23 +153,27 @@ class __$$_ItemCopyWithImpl<$Res> extends _$ItemCopyWithImpl<$Res, _$_Item>
       categories: freezed == categories
           ? _value._categories
           : categories // ignore: cast_nullable_to_non_nullable
-              as List<Category>?,
+              as List<CategoryDTO>?,
     ));
   }
 }
 
 /// @nodoc
-
-class _$_Item extends _Item {
-  const _$_Item(
+@JsonSerializable()
+class _$_ItemDTO extends _ItemDTO {
+  const _$_ItemDTO(
       {required this.name,
       required this.description,
       required this.price,
       this.discount,
       required this.image,
-      final List<Category>? categories})
+      @JsonKey(fromJson: _categoriesFromJson)
+          final List<CategoryDTO>? categories})
       : _categories = categories,
         super._();
+
+  factory _$_ItemDTO.fromJson(Map<String, dynamic> json) =>
+      _$$_ItemDTOFromJson(json);
 
   @override
   final String name;
@@ -173,9 +185,10 @@ class _$_Item extends _Item {
   final double? discount;
   @override
   final String image;
-  final List<Category>? _categories;
+  final List<CategoryDTO>? _categories;
   @override
-  List<Category>? get categories {
+  @JsonKey(fromJson: _categoriesFromJson)
+  List<CategoryDTO>? get categories {
     final value = _categories;
     if (value == null) return null;
     if (_categories is EqualUnmodifiableListView) return _categories;
@@ -185,14 +198,14 @@ class _$_Item extends _Item {
 
   @override
   String toString() {
-    return 'Item(name: $name, description: $description, price: $price, discount: $discount, image: $image, categories: $categories)';
+    return 'ItemDTO(name: $name, description: $description, price: $price, discount: $discount, image: $image, categories: $categories)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_Item &&
+            other is _$_ItemDTO &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.description, description) ||
                 other.description == description) &&
@@ -204,6 +217,7 @@ class _$_Item extends _Item {
                 .equals(other._categories, _categories));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, name, description, price,
       discount, image, const DeepCollectionEquality().hash(_categories));
@@ -211,19 +225,29 @@ class _$_Item extends _Item {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_ItemCopyWith<_$_Item> get copyWith =>
-      __$$_ItemCopyWithImpl<_$_Item>(this, _$identity);
+  _$$_ItemDTOCopyWith<_$_ItemDTO> get copyWith =>
+      __$$_ItemDTOCopyWithImpl<_$_ItemDTO>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_ItemDTOToJson(
+      this,
+    );
+  }
 }
 
-abstract class _Item extends Item {
-  const factory _Item(
+abstract class _ItemDTO extends ItemDTO {
+  const factory _ItemDTO(
       {required final String name,
       required final String description,
       required final double price,
       final double? discount,
       required final String image,
-      final List<Category>? categories}) = _$_Item;
-  const _Item._() : super._();
+      @JsonKey(fromJson: _categoriesFromJson)
+          final List<CategoryDTO>? categories}) = _$_ItemDTO;
+  const _ItemDTO._() : super._();
+
+  factory _ItemDTO.fromJson(Map<String, dynamic> json) = _$_ItemDTO.fromJson;
 
   @override
   String get name;
@@ -236,8 +260,10 @@ abstract class _Item extends Item {
   @override
   String get image;
   @override
-  List<Category>? get categories;
+  @JsonKey(fromJson: _categoriesFromJson)
+  List<CategoryDTO>? get categories;
   @override
   @JsonKey(ignore: true)
-  _$$_ItemCopyWith<_$_Item> get copyWith => throw _privateConstructorUsedError;
+  _$$_ItemDTOCopyWith<_$_ItemDTO> get copyWith =>
+      throw _privateConstructorUsedError;
 }
