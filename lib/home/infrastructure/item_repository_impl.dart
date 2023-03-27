@@ -1,19 +1,28 @@
 import 'dart:convert';
 
-import 'package:flutter/services.dart';
 import 'package:xtendly_test/home/domain/item.dart';
+import 'package:xtendly_test/home/infrastructure/item_dto.dart';
+import 'package:xtendly_test/home/infrastructure/item_remote_service_impl.dart';
 import 'package:xtendly_test/home/infrastructure/item_repository.dart';
 
 class ItemRepositoryImpl implements ItemRepository {
-  @override
-  Future<List<Item>> getItems() async {
-    await Future.delayed(const Duration(seconds: 2)); // simulate network delay
-    const assetsPath = 'assets/items.json';
-    final jsonDecoded = await rootBundle
-        .loadString(assetsPath)
-        .then((value) => jsonDecode(value) as List<Map<String, dynamic>>);
+  final ItemRemoteServiceImpl _remoteService;
 
-    final items = jsonDecoded.map((element) => Item.fromJson(element)).toList();
-    return items;
+  ItemRepositoryImpl(this._remoteService);
+  @override
+  Future<List<Item?>> getItems() async {
+    final json = await _remoteService.getItems();
+    final jsonDecoded = await jsonDecode(json) as List<dynamic>;
+    if (jsonDecoded.isNotEmpty) {
+      final List<Item> items = jsonDecoded
+          .map(
+            (element) =>
+                ItemDTO.fromJson(element as Map<String, dynamic>).toDomain(),
+          )
+          .toList();
+
+      return items;
+    }
+    return [];
   }
 }
