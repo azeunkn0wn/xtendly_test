@@ -47,7 +47,11 @@ class AppWidget extends StatelessWidget {
     );
 
     return ThemeData(
-      useMaterial3: true,
+      primaryColor: Colors.black,
+      colorScheme: const ColorScheme.light(
+        primary: Color(0xFF000000),
+        secondary: Color(0xFFFFFFFF),
+      ),
       brightness: Brightness.light,
       canvasColor: const Color(0xFFFFFFFF),
       scaffoldBackgroundColor: const Color(0xFFEBEAE8),
