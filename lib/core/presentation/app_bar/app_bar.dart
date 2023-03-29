@@ -21,32 +21,37 @@ class _ResponsiveNavBarState extends State<ResponsiveNavBar> {
 
   @override
   Widget build(BuildContext context) {
-    final layoutBig = [
-      Flexible(
-        flex: 3,
-        fit: FlexFit.tight,
-        child: Container(
-          alignment: Alignment.centerLeft,
-          padding: const EdgeInsets.only(left: 38),
-          child: const Logo(),
-        ),
-      ),
-      const ResponsiveVisibility(
-        hiddenWhen: [Condition.smallerThan(name: TABLET)],
-        child: Flexible(
+    final layoutBig = Row(
+      children: [
+        Flexible(
+          flex: 3,
           fit: FlexFit.tight,
-          flex: 5,
-          child: NavigationButtons(),
+          child: Container(
+            alignment: Alignment.centerLeft,
+            padding: const EdgeInsets.only(left: 38),
+            child: const Logo(),
+          ),
         ),
-      ),
-      Flexible(
-        flex: 3,
-        fit: FlexFit.tight,
-        child: Container(
-          child: const ActionButtons(),
+        const ResponsiveVisibility(
+          hiddenWhen: [Condition.smallerThan(name: TABLET)],
+          child: Flexible(
+            fit: FlexFit.tight,
+            flex: 5,
+            child: NavigationButtons(),
+          ),
         ),
-      )
-    ];
+        Flexible(
+          flex: 3,
+          fit: FlexFit.tight,
+          child: Container(
+            child: const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 48),
+              child: ActionButtons(),
+            ),
+          ),
+        )
+      ],
+    );
 
     final layoutSmall = [
       const Logo(),
@@ -70,16 +75,14 @@ class _ResponsiveNavBarState extends State<ResponsiveNavBar> {
               ),
             ],
           ),
-          child: Row(
-            children: ResponsiveValue(
-              context,
-              defaultValue: layoutBig,
-              valueWhen: [
-                Condition.largerThan(name: TABLET, value: layoutBig),
-                Condition.smallerThan(name: TABLET, value: layoutSmall)
-              ],
-            ).value!,
-          ),
+          child: ResponsiveValue(
+            context,
+            defaultValue: layoutBig,
+            valueWhen: [
+              Condition.largerThan(name: TABLET, value: layoutBig),
+              Condition.smallerThan(name: TABLET, value: layoutSmall)
+            ],
+          ).value,
         ),
       ),
     );
