@@ -31,6 +31,12 @@ class _StateTestState extends ConsumerState<HomePage> {
       body: Stack(
         children: [
           BodyContent(state: state),
+          const ResponsiveVisibility(
+            hiddenWhen: [
+              Condition.smallerThan(name: MOBILE),
+            ],
+            child: TopTextButtons(),
+          ),
           const ResponsiveNavBar(),
         ],
       ),
@@ -50,12 +56,6 @@ class BodyContent extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        const ResponsiveVisibility(
-          hiddenWhen: [
-            Condition.smallerThan(name: MOBILE),
-          ],
-          child: TopTextButtons(),
-        ),
         Flexible(
           child: state.maybeMap(
             orElse: () => const Center(
