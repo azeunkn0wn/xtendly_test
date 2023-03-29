@@ -13,6 +13,12 @@ class _SearchFieldState extends State<SearchField> {
   @override
   Widget build(BuildContext context) {
     return TextField(
+      onSubmitted: (value) {
+        final snackBar = SnackBar(
+          content: Text('Search: $value'),
+        );
+        ScaffoldMessenger.of(context).showSnackBar(snackBar);
+      },
       textAlignVertical: TextAlignVertical.center,
       decoration: InputDecoration(
         contentPadding: const EdgeInsets.only(right: 10, top: 6, bottom: 8),

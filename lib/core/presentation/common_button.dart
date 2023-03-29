@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class CommonButton extends StatelessWidget {
   final double? width;
   final double? height;
-  final void Function()? onPressed;
+  final VoidCallback? onPressed;
   final Widget? child;
 
   const CommonButton({
@@ -20,7 +20,12 @@ class CommonButton extends StatelessWidget {
       width: width,
       height: height,
       child: ElevatedButton(
-        onPressed: () {},
+        onPressed: () {
+          const snackBar = SnackBar(
+            content: Text('Button pressed'),
+          );
+          ScaffoldMessenger.of(context).showSnackBar(snackBar);
+        },
         style: ButtonStyle(
           shape: MaterialStateProperty.all<RoundedRectangleBorder>(
             RoundedRectangleBorder(

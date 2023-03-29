@@ -29,7 +29,12 @@ class _NavigationButtonsState extends State<NavigationButtons> {
         for (final item in navItems)
           NavButton(
             text: item,
-            onPressed: () {},
+            onPressed: () {
+              final snackBar = SnackBar(
+                content: Text('Navigate to: $item'),
+              );
+              ScaffoldMessenger.of(context).showSnackBar(snackBar);
+            },
           ),
       ],
     );
@@ -38,12 +43,12 @@ class _NavigationButtonsState extends State<NavigationButtons> {
 
 class NavButton extends StatelessWidget {
   final String text;
-  final Function? onPressed;
+  final VoidCallback? onPressed;
 
   const NavButton({
     super.key,
     required this.text,
-    this.onPressed,
+    required this.onPressed,
   });
 
   @override
@@ -58,7 +63,7 @@ class NavButton extends StatelessWidget {
           fontWeight: FontWeight.w500,
         ),
       ),
-      onPressed: () {},
+      onPressed: onPressed,
       child: Text(
         text,
         textAlign: TextAlign.center,
