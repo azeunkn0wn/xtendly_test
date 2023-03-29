@@ -21,51 +21,48 @@ class TopTextButtons extends StatelessWidget {
       height: topSpacing,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.end,
-        children: [
-          TextButton(
-            style: TextButton.styleFrom(
-              padding: EdgeInsets.zero,
-              foregroundColor: Colors.black,
-              textStyle: const TextStyle(
-                fontSize: 10,
-                fontWeight: FontWeight.w500,
-              ),
-            ),
-            onPressed: () {},
-            child: const Text(
-              'Help',
-            ),
-          ),
+        children: const [
+          TopTextButtonWidget('Help'),
           topDivider,
-          TextButton(
-            style: TextButton.styleFrom(
-              foregroundColor: Colors.black,
-              textStyle: const TextStyle(
-                fontSize: 10,
-                fontWeight: FontWeight.w500,
-              ),
-            ),
-            onPressed: () {},
-            child: const Text(
-              'Join Us',
-            ),
-          ),
+          TopTextButtonWidget('Join Us'),
           topDivider,
-          TextButton(
-            style: TextButton.styleFrom(
-              foregroundColor: Colors.black,
-              textStyle: const TextStyle(
-                fontSize: 10,
-                fontWeight: FontWeight.w500,
-              ),
-            ),
-            onPressed: () {},
-            child: const Text(
-              'Sign In',
-            ),
-          ),
-          const Padding(padding: EdgeInsets.only(right: 30))
+          TopTextButtonWidget('Sign In'),
+          Padding(padding: EdgeInsets.only(right: 30))
         ],
+      ),
+    );
+  }
+}
+
+class TopTextButtonWidget extends StatelessWidget {
+  final String text;
+  final VoidCallback? onPressed;
+  const TopTextButtonWidget(
+    this.text, {
+    super.key,
+    this.onPressed,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return TextButton(
+      style: TextButton.styleFrom(
+        padding: EdgeInsets.zero,
+        foregroundColor: Colors.black,
+        textStyle: const TextStyle(
+          fontSize: 10,
+          fontWeight: FontWeight.w500,
+        ),
+      ),
+      onPressed: onPressed ??
+          () {
+            final snackBar = SnackBar(
+              content: Text(text),
+            );
+            ScaffoldMessenger.of(context).showSnackBar(snackBar);
+          },
+      child: Text(
+        text,
       ),
     );
   }
