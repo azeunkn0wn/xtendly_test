@@ -1,5 +1,8 @@
+// ignore_for_file: avoid_unnecessary_containers
+
 import 'package:flutter/material.dart';
 import 'package:responsive_framework/responsive_framework.dart';
+import 'package:xtendly_test/core/presentation/app_bar/action_buttons.dart';
 import 'package:xtendly_test/core/presentation/app_bar/logo.dart';
 import 'package:xtendly_test/core/presentation/app_bar/navigation_buttons.dart';
 import 'package:xtendly_test/core/presentation/widget_constants.dart';
@@ -20,7 +23,7 @@ class _ResponsiveNavBarState extends State<ResponsiveNavBar> {
   Widget build(BuildContext context) {
     final layoutBig = [
       Flexible(
-        flex: 2,
+        flex: 3,
         fit: FlexFit.tight,
         child: Container(
           alignment: Alignment.centerLeft,
@@ -30,17 +33,21 @@ class _ResponsiveNavBarState extends State<ResponsiveNavBar> {
       ),
       const ResponsiveVisibility(
         hiddenWhen: [Condition.smallerThan(name: TABLET)],
-        child: Expanded(
-          flex: 4,
+        child: Flexible(
+          fit: FlexFit.tight,
+          flex: 5,
           child: NavigationButtons(),
         ),
       ),
-      const Flexible(
-        flex: 2,
+      Flexible(
+        flex: 3,
         fit: FlexFit.tight,
-        child: ActionButtons(),
+        child: Container(
+          child: const ActionButtons(),
+        ),
       )
     ];
+
     final layoutSmall = [
       const Logo(),
       const ActionButtons(),
@@ -75,25 +82,6 @@ class _ResponsiveNavBarState extends State<ResponsiveNavBar> {
           ),
         ),
       ),
-    );
-  }
-}
-
-class ActionButtons extends StatelessWidget {
-  const ActionButtons({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.end,
-      children: const [
-        Icon(Icons.search),
-        SizedBox(width: 20),
-        Icon(Icons.shopping_cart),
-        SizedBox(width: 20),
-      ],
     );
   }
 }
