@@ -1,6 +1,7 @@
 // ignore_for_file: avoid_unnecessary_containers
 
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 import 'package:xtendly_test/core/presentation/app_bar/action_buttons.dart';
 import 'package:xtendly_test/core/presentation/app_bar/logo.dart';
@@ -53,10 +54,29 @@ class _ResponsiveNavBarState extends State<ResponsiveNavBar> {
       ],
     );
 
-    final layoutSmall = [
-      const Logo(),
-      const ActionButtons(),
-    ];
+    final layoutSmall = Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Padding(
+          padding: const EdgeInsets.only(left: 25),
+          child: InkWell(
+            onTap: () {
+              const snackBar = SnackBar(
+                content: Text('Menu button'),
+              );
+              ScaffoldMessenger.of(context).showSnackBar(snackBar);
+            },
+            child: SvgPicture.asset(
+              'icons/burger.svg',
+              colorFilter:
+                  const ColorFilter.mode(Color(0xFFD9D9D9), BlendMode.srcIn),
+            ),
+          ),
+        ),
+        const Logo(),
+        const ActionButtons(),
+      ],
+    );
 
     return Positioned(
       top: topSpacing,
