@@ -30,7 +30,7 @@ class _ResponsiveNavBarState extends State<ResponsiveNavBar> {
           child: Container(
             alignment: Alignment.centerLeft,
             padding: const EdgeInsets.only(left: 38),
-            child: const Logo(),
+            child: const Logo(size: Size(50, 50)),
           ),
         ),
         const ResponsiveVisibility(
@@ -73,7 +73,7 @@ class _ResponsiveNavBarState extends State<ResponsiveNavBar> {
             ),
           ),
         ),
-        const Logo(),
+        const Logo(size: Size(45, 45)),
         const ActionButtons(),
       ],
     );
