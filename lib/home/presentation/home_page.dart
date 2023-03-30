@@ -5,6 +5,7 @@ import 'package:xtendly_test/core/presentation/app_bar/app_bar.dart';
 import 'package:xtendly_test/core/presentation/footer/footer.dart';
 import 'package:xtendly_test/core/presentation/top_text_button.dart';
 import 'package:xtendly_test/home/application/items_notifier.dart';
+import 'package:xtendly_test/home/presentation/header.dart';
 import 'package:xtendly_test/home/shared/provider.dart';
 
 class HomePage extends ConsumerStatefulWidget {
@@ -58,8 +59,9 @@ class BodyContent extends StatelessWidget {
     return SingleChildScrollView(
       child: Column(
         children: [
-          ItemsGrid(state: state),
+          const HeaderWidget(),
           const Footer(),
+          ItemsGrid(state: state),
         ],
       ),
     );
