@@ -87,7 +87,7 @@ class Footer extends StatelessWidget {
         rowFlex: 2,
         child: Container(
           padding: ResponsiveWrapper.of(context).isLargerThan(TABLET)
-              ? const EdgeInsets.only()
+              ? null
               : const EdgeInsets.only(left: 20),
           alignment: ResponsiveWrapper.of(context).isLargerThan(TABLET)
               ? Alignment.center
