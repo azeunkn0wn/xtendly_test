@@ -50,11 +50,10 @@ class AppWidget extends StatelessWidget {
       primaryColor: Colors.black,
       colorScheme: const ColorScheme.light(
         primary: Color(0xFF000000),
-        secondary: Color(0xFFFFFFFF),
+        secondary: Color(0xFFEBEAE8),
       ),
       brightness: Brightness.light,
       canvasColor: const Color(0xFFFFFFFF),
-      scaffoldBackgroundColor: const Color(0xFFEBEAE8),
       appBarTheme: appBarTheme,
       elevatedButtonTheme: elevatedButtonThemeData,
       textTheme: GoogleFonts.interTextTheme(),
