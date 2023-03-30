@@ -21,6 +21,7 @@ dependencies:
   google_fonts: ^4.0.3
   hooks_riverpod: ^2.3.2
   json_annotation: ^4.8.0
+  material_design_icons_flutter: ^6.0.7096
   responsive_framework: ^0.2.0
   shimmer: ^2.0.0
 
