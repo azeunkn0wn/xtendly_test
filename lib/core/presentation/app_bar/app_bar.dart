@@ -6,11 +6,12 @@ import 'package:responsive_framework/responsive_framework.dart';
 import 'package:xtendly_test/core/presentation/app_bar/action_buttons.dart';
 import 'package:xtendly_test/core/presentation/app_bar/logo.dart';
 import 'package:xtendly_test/core/presentation/app_bar/navigation_buttons.dart';
-import 'package:xtendly_test/core/presentation/widget_constants.dart';
 
 class ResponsiveNavBar extends StatefulWidget {
+  final double height;
   const ResponsiveNavBar({
     super.key,
+    required this.height,
   });
 
   @override
@@ -78,33 +79,26 @@ class _ResponsiveNavBarState extends State<ResponsiveNavBar> {
       ],
     );
 
-    return Positioned(
-      top: topSpacing,
-      left: 0,
-      right: 0,
-      child: SizedBox.fromSize(
-        size: const Size.fromHeight(appBarHeight),
-        child: Container(
-          decoration: BoxDecoration(
-            color: Theme.of(context).appBarTheme.backgroundColor,
-            boxShadow: [
-              BoxShadow(
-                color: Colors.black.withOpacity(0.25),
-                blurRadius: 4,
-                offset: const Offset(0, 4),
-              ),
-            ],
+    return Container(
+      height: widget.height,
+      decoration: BoxDecoration(
+        color: Theme.of(context).appBarTheme.backgroundColor,
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.25),
+            blurRadius: 4,
+            offset: const Offset(0, 4),
           ),
-          child: ResponsiveValue(
-            context,
-            defaultValue: layoutBig,
-            valueWhen: [
-              Condition.largerThan(name: TABLET, value: layoutBig),
-              Condition.smallerThan(name: TABLET, value: layoutSmall)
-            ],
-          ).value,
-        ),
+        ],
       ),
+      child: ResponsiveValue(
+        context,
+        defaultValue: layoutBig,
+        valueWhen: [
+          Condition.largerThan(name: TABLET, value: layoutBig),
+          Condition.smallerThan(name: TABLET, value: layoutSmall)
+        ],
+      ).value,
     );
   }
 }
