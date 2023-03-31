@@ -49,106 +49,128 @@ class CategorySection extends StatelessWidget {
           }
         }
 
-        return AspectRatio(
-          aspectRatio:
-              isBigScreen ? sectionSizeL.aspectRatio : sectionSizeS.aspectRatio,
-          child: LayoutBuilder(
-            builder: (context, constraints) {
-              final currentScreenSize = constraints.biggest;
-              final categoryBoxSize = isBigScreen
-                  ? scaleByReference(currentScreenSize, boxSizeL, sectionSizeL)
-                  : scaleByReference(currentScreenSize, boxSizeS, sectionSizeS);
+        return ColoredBox(
+          color: const Color(0xFFEBEAE8),
+          child: AspectRatio(
+            aspectRatio: isBigScreen
+                ? sectionSizeL.aspectRatio
+                : sectionSizeS.aspectRatio,
+            child: LayoutBuilder(
+              builder: (context, constraints) {
+                final currentScreenSize = constraints.biggest;
+                final categoryBoxSize = isBigScreen
+                    ? scaleByReference(
+                        currentScreenSize,
+                        boxSizeL,
+                        sectionSizeL,
+                      )
+                    : scaleByReference(
+                        currentScreenSize,
+                        boxSizeS,
+                        sectionSizeS,
+                      );
 
-              final buttonSize = isBigScreen
-                  ? scaleByReference(categoryBoxSize, buttonSizeL, boxSizeL)
-                  : scaleByReference(categoryBoxSize, buttonSizeS, boxSizeS);
+                final buttonSize = isBigScreen
+                    ? scaleByReference(categoryBoxSize, buttonSizeL, boxSizeL)
+                    : scaleByReference(categoryBoxSize, buttonSizeS, boxSizeS);
 
-              return Column(
-                children: [
-                  ResponsiveRowColumn(
-                    rowSpacing: 40,
-                    rowMainAxisAlignment: MainAxisAlignment.center,
-                    rowPadding: const EdgeInsets.only(top: 116, bottom: 60),
-                    columnPadding: const EdgeInsets.only(
-                      top: 53,
-                    ),
-                    columnSpacing: 32,
-                    layout: ResponsiveWrapper.of(context).isSmallerThan(DESKTOP)
-                        ? ResponsiveRowColumnType.COLUMN
-                        : ResponsiveRowColumnType.ROW,
-                    children: [
-                      for (final category in categoriesInManualOrder)
-                        ResponsiveRowColumnItem(
-                          child: Stack(
-                            alignment: Alignment.center,
-                            children: [
-                              Container(
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(10),
-                                  boxShadow: [
-                                    BoxShadow(
-                                      color: Colors.black.withOpacity(0.25),
-                                      blurRadius: 10,
-                                      offset: const Offset(4, 4),
-                                    )
-                                  ],
-                                  image: DecorationImage(
-                                    image: AssetImage(
-                                      categoryItem[category]![0].image,
+                return Column(
+                  children: [
+                    ResponsiveRowColumn(
+                      rowSpacing: 40,
+                      rowMainAxisAlignment: MainAxisAlignment.center,
+                      rowPadding: const EdgeInsets.only(top: 116, bottom: 60),
+                      columnPadding: const EdgeInsets.only(
+                        top: 53,
+                      ),
+                      columnSpacing: 32,
+                      layout:
+                          ResponsiveWrapper.of(context).isSmallerThan(DESKTOP)
+                              ? ResponsiveRowColumnType.COLUMN
+                              : ResponsiveRowColumnType.ROW,
+                      children: [
+                        for (final category in categoriesInManualOrder)
+                          ResponsiveRowColumnItem(
+                            child: InkWell(
+                              onTap: () {
+                                final snackBar = SnackBar(
+                                  content: Text(category.name),
+                                );
+                                ScaffoldMessenger.of(context)
+                                    .showSnackBar(snackBar);
+                              },
+                              child: Stack(
+                                alignment: Alignment.center,
+                                children: [
+                                  Container(
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(10),
+                                      boxShadow: [
+                                        BoxShadow(
+                                          color: Colors.black.withOpacity(0.25),
+                                          blurRadius: 10,
+                                          offset: const Offset(4, 4),
+                                        )
+                                      ],
+                                      image: DecorationImage(
+                                        image: AssetImage(
+                                          categoryItem[category]![0].image,
+                                        ),
+                                        fit: BoxFit.cover,
+                                      ),
                                     ),
-                                    fit: BoxFit.cover,
+                                    width: categoryBoxSize.width,
+                                    height: categoryBoxSize.height,
                                   ),
-                                ),
-                                width: categoryBoxSize.width,
-                                height: categoryBoxSize.height,
+                                  Positioned(
+                                    top: categoryBoxSize.height * 0.85,
+                                    child: CommonButton(
+                                      text: category.name,
+                                      height: buttonSize.height,
+                                      width: buttonSize.width,
+                                      fontSize: isBigScreen
+                                          ? categoryBoxSize.height *
+                                              (24 / boxSizeL.height)
+                                          : categoryBoxSize.height *
+                                              (15 / boxSizeS.height),
+                                    ),
+                                  ),
+                                ],
                               ),
-                              Positioned(
-                                top: categoryBoxSize.height * 0.85,
-                                child: CommonButton(
-                                  text: category.name,
-                                  height: buttonSize.height,
-                                  width: buttonSize.width,
-                                  fontSize: isBigScreen
-                                      ? categoryBoxSize.height *
-                                          (24 / boxSizeL.height)
-                                      : categoryBoxSize.height *
-                                          (15 / boxSizeS.height),
-                                ),
-                              ),
-                            ],
+                            ),
                           ),
-                        ),
-                    ],
-                  ),
-                  const ResponsiveVisibility(
-                    hiddenWhen: [Condition.smallerThan(name: DESKTOP)],
-                    child: Flexible(
-                      child: FittedBox(
-                        alignment: Alignment.centerLeft,
-                        fit: BoxFit.fitHeight,
-                        child: Text(
-                          '''
-Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-Ut enim ad minim veniam, quis nostrud exercitation ullamco
-laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit
-in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
-deserunt mollit anim id est laborum.
-                        ''',
-                          textAlign: TextAlign.center,
-                          // overflow: TextOverflow.clip,
-                          style: TextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.w500,
+                      ],
+                    ),
+                    const ResponsiveVisibility(
+                      hiddenWhen: [Condition.smallerThan(name: DESKTOP)],
+                      child: Flexible(
+                        child: FittedBox(
+                          alignment: Alignment.centerLeft,
+                          fit: BoxFit.fitHeight,
+                          child: Text(
+                            '''
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+        sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        Ut enim ad minim veniam, quis nostrud exercitation ullamco
+        laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit
+        in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+        Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
+        deserunt mollit anim id est laborum.
+                          ''',
+                            textAlign: TextAlign.center,
+                            // overflow: TextOverflow.clip,
+                            style: TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.w500,
+                            ),
                           ),
                         ),
                       ),
-                    ),
-                  )
-                ],
-              );
-            },
+                    )
+                  ],
+                );
+              },
+            ),
           ),
         );
       },
