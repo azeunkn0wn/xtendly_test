@@ -9,6 +9,7 @@ import 'package:xtendly_test/core/presentation/widget_constants.dart';
 import 'package:xtendly_test/home/application/items_notifier.dart';
 import 'package:xtendly_test/home/presentation/category.dart';
 import 'package:xtendly_test/home/presentation/header.dart';
+import 'package:xtendly_test/home/presentation/sale_item_section.dart';
 import 'package:xtendly_test/home/shared/provider.dart';
 
 class HomePage extends ConsumerStatefulWidget {
@@ -120,8 +121,9 @@ class BodyContent extends StatelessWidget {
       children: [
         const HeaderWidget(),
         CategorySection(state: state),
+        SaleItems(state: state),
+        // ItemsGrid(state: state),
         const Footer(),
-        ItemsGrid(state: state),
       ],
     );
   }
