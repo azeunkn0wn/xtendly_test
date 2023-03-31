@@ -30,7 +30,8 @@ class _HeaderWidgetState extends State<HeaderWidget> {
             return Stack(
               children: [
                 AnimatedPositioned(
-                  duration: const Duration(milliseconds: 200),
+                  curve: Curves.easeInOutQuart,
+                  duration: const Duration(milliseconds: 500),
                   top: isBigScreen ? height * 0.249 : height * 0.612,
                   left: isBigScreen ? 0 : width * 0.464,
                   width: isBigScreen ? width * 0.264 : null,
@@ -41,7 +42,8 @@ class _HeaderWidgetState extends State<HeaderWidget> {
                   ),
                 ),
                 AnimatedPositioned(
-                  duration: const Duration(milliseconds: 200),
+                  curve: Curves.easeInOutQuart,
+                  duration: const Duration(milliseconds: 500),
                   top: isBigScreen ? height * 0.210 : height * 0.138,
                   right: 0,
                   width: isBigScreen ? width * 0.502 : null,
@@ -52,7 +54,8 @@ class _HeaderWidgetState extends State<HeaderWidget> {
                   ),
                 ),
                 AnimatedPositioned(
-                  duration: const Duration(milliseconds: 200),
+                  curve: Curves.easeInOutQuart,
+                  duration: const Duration(milliseconds: 500),
                   top: isBigScreen ? height * 0.300 : height * 0.362,
                   left: isBigScreen ? width * 0.246 : width * 0.05,
                   width: isBigScreen ? width * 0.264 : null,
