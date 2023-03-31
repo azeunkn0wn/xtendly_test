@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 
+import 'package:xtendly_test/core/presentation/common_button.dart';
+
 class HeaderWidget extends StatefulWidget {
   const HeaderWidget({
     super.key,
@@ -28,6 +30,7 @@ class _HeaderWidgetState extends State<HeaderWidget> {
             final height = constraints.maxHeight;
             final width = constraints.maxWidth;
             return Stack(
+              alignment: Alignment.center,
               children: [
                 AnimatedPositioned(
                   curve: Curves.easeInOutQuart,
@@ -68,6 +71,15 @@ class _HeaderWidgetState extends State<HeaderWidget> {
                     ),
                   ),
                 ),
+                Positioned(
+                  top: isBigScreen ? height * 0.786 : height * 0.5,
+                  height: isBigScreen ? 57 : 47,
+                  width: isBigScreen ? 218 : 180,
+                  child: CommonButton(
+                    text: 'Shop Now',
+                    fontSize: isBigScreen ? 24 : 20,
+                  ),
+                )
               ],
             );
           },
