@@ -91,7 +91,7 @@ class _StateTestState extends ConsumerState<HomePage> {
                   });
                 },
                 curve: Curves.linearToEaseOut,
-                child: ResponsiveNavBar(
+                child: ResponsiveAppBar(
                   height: ResponsiveWrapper.of(context).isSmallerThan(TABLET)
                       ? appBarHeightMobile
                       : appBarHeight,

@@ -7,19 +7,19 @@ import 'package:xtendly_test/core/presentation/app_bar/action_buttons.dart';
 import 'package:xtendly_test/core/presentation/app_bar/logo.dart';
 import 'package:xtendly_test/core/presentation/app_bar/navigation_buttons.dart';
 
-class ResponsiveNavBar extends StatefulWidget {
+class ResponsiveAppBar extends StatefulWidget {
   final double height;
-  const ResponsiveNavBar({
+  const ResponsiveAppBar({
     super.key,
     required this.height,
   });
 
   @override
-  State<ResponsiveNavBar> createState() => _ResponsiveNavBarState();
+  State<ResponsiveAppBar> createState() => _ResponsiveAppBarState();
 }
 
-class _ResponsiveNavBarState extends State<ResponsiveNavBar> {
-  _ResponsiveNavBarState();
+class _ResponsiveAppBarState extends State<ResponsiveAppBar> {
+  _ResponsiveAppBarState();
 
   @override
   Widget build(BuildContext context) {
