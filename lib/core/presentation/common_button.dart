@@ -4,14 +4,16 @@ class CommonButton extends StatelessWidget {
   final double? width;
   final double? height;
   final VoidCallback? onPressed;
-  final Widget? child;
+  final String text;
+  final double? fontSize;
 
   const CommonButton({
     super.key,
+    required this.text,
     this.width,
     this.height,
-    required this.onPressed,
-    required this.child,
+    this.fontSize,
+    this.onPressed,
   });
 
   @override
@@ -20,22 +22,29 @@ class CommonButton extends StatelessWidget {
       width: width,
       height: height,
       child: ElevatedButton(
-        onPressed: () {
-          const snackBar = SnackBar(
-            content: Text('Button pressed'),
-          );
-          ScaffoldMessenger.of(context).showSnackBar(snackBar);
-        },
+        onPressed: onPressed ??
+            () {
+              final snackBar = SnackBar(
+                content: Text(text),
+              );
+              ScaffoldMessenger.of(context).showSnackBar(snackBar);
+            },
         style: ButtonStyle(
+          elevation: MaterialStateProperty.all(11),
+          shadowColor: MaterialStateProperty.all(Colors.black),
           shape: MaterialStateProperty.all<RoundedRectangleBorder>(
             RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(50.0),
             ),
           ),
         ),
-        child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 15),
-          child: child,
+        child: Text(
+          text,
+          textAlign: TextAlign.center,
+          style: TextStyle(
+            fontSize: fontSize,
+            fontWeight: FontWeight.w500,
+          ),
         ),
       ),
     );
