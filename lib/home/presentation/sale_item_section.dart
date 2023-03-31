@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:responsive_framework/responsive_framework.dart';
+import 'package:text_scroll/text_scroll.dart';
 
 import 'package:xtendly_test/home/application/items_notifier.dart';
 
@@ -18,7 +19,8 @@ class SaleItems extends StatelessWidget {
       height: 1300,
       child: Column(
         children: [
-          SaleBanner(isBigScreen: isBigScreen),
+          SaleBannerScrollingText(isBigScreen: isBigScreen),
+          // SaleBanner(isBigScreen: isBigScreen),
         ],
       ),
     );
@@ -59,6 +61,52 @@ class SaleBanner extends StatelessWidget {
                 color: const Color(0xFFCF4242),
                 fontSize: isBigScreen ? 50 : 35,
                 fontWeight: FontWeight.w600,
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class SaleBannerScrollingText extends StatelessWidget {
+  const SaleBannerScrollingText({
+    super.key,
+    required this.isBigScreen,
+  });
+
+  final bool isBigScreen;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: isBigScreen ? 77 : 46,
+      decoration: BoxDecoration(
+        color: Colors.white,
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.25),
+            blurRadius: 10,
+            offset: const Offset(4, 4),
+          )
+        ],
+      ),
+      child: Row(
+        children: [
+          Flexible(
+            child: ScrollConfiguration(
+              behavior:
+                  ScrollConfiguration.of(context).copyWith(scrollbars: false),
+              child: TextScroll(
+                'SALE      SALE      SALE      SALE      SALE      SALE      SALE      SALE      SALE      SALE      SALE      SALE      SALE      SALE      SALE      SALE      SALE      SALE      SALE      SALE      SALE      SALE      SALE      SALE      SALE      SALE      SALE      SALE      ',
+                velocity: const Velocity(pixelsPerSecond: Offset(50, 0)),
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  color: const Color(0xFFCF4242),
+                  fontSize: isBigScreen ? 50 : 35,
+                  fontWeight: FontWeight.w600,
+                ),
               ),
             ),
           ),
