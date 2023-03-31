@@ -10,7 +10,7 @@ class ItemRepositoryImpl implements ItemRepository {
 
   ItemRepositoryImpl(this._remoteService);
   @override
-  Future<List<Item?>> getItems() async {
+  Future<List<Item>> getItems() async {
     final json = await _remoteService.getItems();
     final jsonDecoded = await jsonDecode(json) as List<dynamic>;
     if (jsonDecoded.isNotEmpty) {

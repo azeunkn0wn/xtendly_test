@@ -8,10 +8,10 @@ part 'items_notifier.freezed.dart';
 @freezed
 class ItemsState with _$ItemsState {
   const ItemsState._();
-  const factory ItemsState.initial(List<Item?> items) = _Initial;
-  const factory ItemsState.loadInProgress(List<Item?> items) = _LoadInProgress;
+  const factory ItemsState.initial(List<Item> items) = _Initial;
+  const factory ItemsState.loadInProgress(List<Item> items) = _LoadInProgress;
   const factory ItemsState.loadSuccess(
-    List<Item?> items,
+    List<Item> items,
   ) = _LoadSuccess;
 }
 

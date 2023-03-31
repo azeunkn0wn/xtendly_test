@@ -16,26 +16,26 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$ItemsState {
-  List<Item?> get items => throw _privateConstructorUsedError;
+  List<Item> get items => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(List<Item?> items) initial,
-    required TResult Function(List<Item?> items) loadInProgress,
-    required TResult Function(List<Item?> items) loadSuccess,
+    required TResult Function(List<Item> items) initial,
+    required TResult Function(List<Item> items) loadInProgress,
+    required TResult Function(List<Item> items) loadSuccess,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(List<Item?> items)? initial,
-    TResult? Function(List<Item?> items)? loadInProgress,
-    TResult? Function(List<Item?> items)? loadSuccess,
+    TResult? Function(List<Item> items)? initial,
+    TResult? Function(List<Item> items)? loadInProgress,
+    TResult? Function(List<Item> items)? loadSuccess,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(List<Item?> items)? initial,
-    TResult Function(List<Item?> items)? loadInProgress,
-    TResult Function(List<Item?> items)? loadSuccess,
+    TResult Function(List<Item> items)? initial,
+    TResult Function(List<Item> items)? loadInProgress,
+    TResult Function(List<Item> items)? loadSuccess,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -73,7 +73,7 @@ abstract class $ItemsStateCopyWith<$Res> {
           ItemsState value, $Res Function(ItemsState) then) =
       _$ItemsStateCopyWithImpl<$Res, ItemsState>;
   @useResult
-  $Res call({List<Item?> items});
+  $Res call({List<Item> items});
 }
 
 /// @nodoc
@@ -95,7 +95,7 @@ class _$ItemsStateCopyWithImpl<$Res, $Val extends ItemsState>
       items: null == items
           ? _value.items
           : items // ignore: cast_nullable_to_non_nullable
-              as List<Item?>,
+              as List<Item>,
     ) as $Val);
   }
 }
@@ -107,7 +107,7 @@ abstract class _$$_InitialCopyWith<$Res> implements $ItemsStateCopyWith<$Res> {
       __$$_InitialCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({List<Item?> items});
+  $Res call({List<Item> items});
 }
 
 /// @nodoc
@@ -126,7 +126,7 @@ class __$$_InitialCopyWithImpl<$Res>
       null == items
           ? _value._items
           : items // ignore: cast_nullable_to_non_nullable
-              as List<Item?>,
+              as List<Item>,
     ));
   }
 }
@@ -134,13 +134,13 @@ class __$$_InitialCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_Initial extends _Initial {
-  const _$_Initial(final List<Item?> items)
+  const _$_Initial(final List<Item> items)
       : _items = items,
         super._();
 
-  final List<Item?> _items;
+  final List<Item> _items;
   @override
-  List<Item?> get items {
+  List<Item> get items {
     if (_items is EqualUnmodifiableListView) return _items;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_items);
@@ -172,9 +172,9 @@ class _$_Initial extends _Initial {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(List<Item?> items) initial,
-    required TResult Function(List<Item?> items) loadInProgress,
-    required TResult Function(List<Item?> items) loadSuccess,
+    required TResult Function(List<Item> items) initial,
+    required TResult Function(List<Item> items) loadInProgress,
+    required TResult Function(List<Item> items) loadSuccess,
   }) {
     return initial(items);
   }
@@ -182,9 +182,9 @@ class _$_Initial extends _Initial {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(List<Item?> items)? initial,
-    TResult? Function(List<Item?> items)? loadInProgress,
-    TResult? Function(List<Item?> items)? loadSuccess,
+    TResult? Function(List<Item> items)? initial,
+    TResult? Function(List<Item> items)? loadInProgress,
+    TResult? Function(List<Item> items)? loadSuccess,
   }) {
     return initial?.call(items);
   }
@@ -192,9 +192,9 @@ class _$_Initial extends _Initial {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(List<Item?> items)? initial,
-    TResult Function(List<Item?> items)? loadInProgress,
-    TResult Function(List<Item?> items)? loadSuccess,
+    TResult Function(List<Item> items)? initial,
+    TResult Function(List<Item> items)? loadInProgress,
+    TResult Function(List<Item> items)? loadSuccess,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -239,11 +239,11 @@ class _$_Initial extends _Initial {
 }
 
 abstract class _Initial extends ItemsState {
-  const factory _Initial(final List<Item?> items) = _$_Initial;
+  const factory _Initial(final List<Item> items) = _$_Initial;
   const _Initial._() : super._();
 
   @override
-  List<Item?> get items;
+  List<Item> get items;
   @override
   @JsonKey(ignore: true)
   _$$_InitialCopyWith<_$_Initial> get copyWith =>
@@ -258,7 +258,7 @@ abstract class _$$_LoadInProgressCopyWith<$Res>
       __$$_LoadInProgressCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({List<Item?> items});
+  $Res call({List<Item> items});
 }
 
 /// @nodoc
@@ -278,7 +278,7 @@ class __$$_LoadInProgressCopyWithImpl<$Res>
       null == items
           ? _value._items
           : items // ignore: cast_nullable_to_non_nullable
-              as List<Item?>,
+              as List<Item>,
     ));
   }
 }
@@ -286,13 +286,13 @@ class __$$_LoadInProgressCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_LoadInProgress extends _LoadInProgress {
-  const _$_LoadInProgress(final List<Item?> items)
+  const _$_LoadInProgress(final List<Item> items)
       : _items = items,
         super._();
 
-  final List<Item?> _items;
+  final List<Item> _items;
   @override
-  List<Item?> get items {
+  List<Item> get items {
     if (_items is EqualUnmodifiableListView) return _items;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_items);
@@ -324,9 +324,9 @@ class _$_LoadInProgress extends _LoadInProgress {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(List<Item?> items) initial,
-    required TResult Function(List<Item?> items) loadInProgress,
-    required TResult Function(List<Item?> items) loadSuccess,
+    required TResult Function(List<Item> items) initial,
+    required TResult Function(List<Item> items) loadInProgress,
+    required TResult Function(List<Item> items) loadSuccess,
   }) {
     return loadInProgress(items);
   }
@@ -334,9 +334,9 @@ class _$_LoadInProgress extends _LoadInProgress {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(List<Item?> items)? initial,
-    TResult? Function(List<Item?> items)? loadInProgress,
-    TResult? Function(List<Item?> items)? loadSuccess,
+    TResult? Function(List<Item> items)? initial,
+    TResult? Function(List<Item> items)? loadInProgress,
+    TResult? Function(List<Item> items)? loadSuccess,
   }) {
     return loadInProgress?.call(items);
   }
@@ -344,9 +344,9 @@ class _$_LoadInProgress extends _LoadInProgress {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(List<Item?> items)? initial,
-    TResult Function(List<Item?> items)? loadInProgress,
-    TResult Function(List<Item?> items)? loadSuccess,
+    TResult Function(List<Item> items)? initial,
+    TResult Function(List<Item> items)? loadInProgress,
+    TResult Function(List<Item> items)? loadSuccess,
     required TResult orElse(),
   }) {
     if (loadInProgress != null) {
@@ -391,11 +391,11 @@ class _$_LoadInProgress extends _LoadInProgress {
 }
 
 abstract class _LoadInProgress extends ItemsState {
-  const factory _LoadInProgress(final List<Item?> items) = _$_LoadInProgress;
+  const factory _LoadInProgress(final List<Item> items) = _$_LoadInProgress;
   const _LoadInProgress._() : super._();
 
   @override
-  List<Item?> get items;
+  List<Item> get items;
   @override
   @JsonKey(ignore: true)
   _$$_LoadInProgressCopyWith<_$_LoadInProgress> get copyWith =>
@@ -410,7 +410,7 @@ abstract class _$$_LoadSuccessCopyWith<$Res>
       __$$_LoadSuccessCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({List<Item?> items});
+  $Res call({List<Item> items});
 }
 
 /// @nodoc
@@ -430,7 +430,7 @@ class __$$_LoadSuccessCopyWithImpl<$Res>
       null == items
           ? _value._items
           : items // ignore: cast_nullable_to_non_nullable
-              as List<Item?>,
+              as List<Item>,
     ));
   }
 }
@@ -438,13 +438,13 @@ class __$$_LoadSuccessCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_LoadSuccess extends _LoadSuccess {
-  const _$_LoadSuccess(final List<Item?> items)
+  const _$_LoadSuccess(final List<Item> items)
       : _items = items,
         super._();
 
-  final List<Item?> _items;
+  final List<Item> _items;
   @override
-  List<Item?> get items {
+  List<Item> get items {
     if (_items is EqualUnmodifiableListView) return _items;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_items);
@@ -476,9 +476,9 @@ class _$_LoadSuccess extends _LoadSuccess {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(List<Item?> items) initial,
-    required TResult Function(List<Item?> items) loadInProgress,
-    required TResult Function(List<Item?> items) loadSuccess,
+    required TResult Function(List<Item> items) initial,
+    required TResult Function(List<Item> items) loadInProgress,
+    required TResult Function(List<Item> items) loadSuccess,
   }) {
     return loadSuccess(items);
   }
@@ -486,9 +486,9 @@ class _$_LoadSuccess extends _LoadSuccess {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(List<Item?> items)? initial,
-    TResult? Function(List<Item?> items)? loadInProgress,
-    TResult? Function(List<Item?> items)? loadSuccess,
+    TResult? Function(List<Item> items)? initial,
+    TResult? Function(List<Item> items)? loadInProgress,
+    TResult? Function(List<Item> items)? loadSuccess,
   }) {
     return loadSuccess?.call(items);
   }
@@ -496,9 +496,9 @@ class _$_LoadSuccess extends _LoadSuccess {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(List<Item?> items)? initial,
-    TResult Function(List<Item?> items)? loadInProgress,
-    TResult Function(List<Item?> items)? loadSuccess,
+    TResult Function(List<Item> items)? initial,
+    TResult Function(List<Item> items)? loadInProgress,
+    TResult Function(List<Item> items)? loadSuccess,
     required TResult orElse(),
   }) {
     if (loadSuccess != null) {
@@ -543,11 +543,11 @@ class _$_LoadSuccess extends _LoadSuccess {
 }
 
 abstract class _LoadSuccess extends ItemsState {
-  const factory _LoadSuccess(final List<Item?> items) = _$_LoadSuccess;
+  const factory _LoadSuccess(final List<Item> items) = _$_LoadSuccess;
   const _LoadSuccess._() : super._();
 
   @override
-  List<Item?> get items;
+  List<Item> get items;
   @override
   @JsonKey(ignore: true)
   _$$_LoadSuccessCopyWith<_$_LoadSuccess> get copyWith =>
