@@ -7,6 +7,7 @@ import 'package:xtendly_test/core/presentation/footer/footer.dart';
 import 'package:xtendly_test/core/presentation/top_text_button.dart';
 import 'package:xtendly_test/core/presentation/widget_constants.dart';
 import 'package:xtendly_test/home/application/items_notifier.dart';
+import 'package:xtendly_test/home/presentation/category.dart';
 import 'package:xtendly_test/home/presentation/header.dart';
 import 'package:xtendly_test/home/shared/provider.dart';
 
@@ -118,6 +119,7 @@ class BodyContent extends StatelessWidget {
     return Column(
       children: [
         const HeaderWidget(),
+        CategorySection(state: state),
         const Footer(),
         ItemsGrid(state: state),
       ],
@@ -147,7 +149,7 @@ class ItemsGrid extends StatelessWidget {
           itemBuilder: (context, index) {
             final item = state.items[index];
             return ListTile(
-              title: Text(item!.name),
+              title: Text(item.name),
               subtitle: Text(item.image),
             );
           },
