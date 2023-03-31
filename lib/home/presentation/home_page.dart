@@ -68,7 +68,7 @@ class _StateTestState extends ConsumerState<HomePage> {
           ),
           const ResponsiveVisibility(
             hiddenWhen: [
-              Condition.smallerThan(name: MOBILE),
+              Condition.smallerThan(name: TABLET),
             ],
             child: TopTextButtons(),
           ),
