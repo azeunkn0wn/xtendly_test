@@ -18,7 +18,7 @@ class AppWidget extends StatelessWidget {
           ResponsiveBreakpoint.resize(450, name: MOBILE),
           ResponsiveBreakpoint.autoScale(800, name: TABLET),
           ResponsiveBreakpoint.resize(1000, name: DESKTOP),
-          ResponsiveBreakpoint.autoScale(1700, name: 'XL'),
+          // ResponsiveBreakpoint.autoScale(1400, name: 'XL'),
         ],
         background: Container(
           color: const Color(0xFFF5F5F5),
