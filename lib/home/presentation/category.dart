@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 import 'package:xtendly_test/core/presentation/common_button.dart';
+import 'package:xtendly_test/core/size_operations.dart';
 import 'package:xtendly_test/home/application/items_notifier.dart';
 import 'package:xtendly_test/home/domain/category.dart';
 import 'package:xtendly_test/home/domain/item.dart';
@@ -12,7 +13,7 @@ class CategorySection extends StatelessWidget {
     required this.state,
   });
 
-  // Sizes from figma
+  // Size references from figma
   static const sectionSizeL = Size(1440, 1000);
   static const sectionSizeS = Size(375, 1096);
 
@@ -54,20 +55,13 @@ class CategorySection extends StatelessWidget {
           child: LayoutBuilder(
             builder: (context, constraints) {
               final currentScreenSize = constraints.biggest;
-
               final categoryBoxSize = isBigScreen
-                  ? Size(
-                      currentScreenSize.width *
-                          (boxSizeL.width / sectionSizeL.width),
-                      currentScreenSize.height *
-                          (boxSizeL.height / sectionSizeL.height),
-                    )
-                  : Size(
-                      currentScreenSize.width *
-                          (boxSizeS.width / sectionSizeS.width),
-                      currentScreenSize.height *
-                          (boxSizeS.height / sectionSizeS.height),
-                    );
+                  ? scaleByReference(currentScreenSize, boxSizeL, sectionSizeL)
+                  : scaleByReference(currentScreenSize, boxSizeS, sectionSizeS);
+
+              final buttonSize = isBigScreen
+                  ? scaleByReference(categoryBoxSize, buttonSizeL, boxSizeL)
+                  : scaleByReference(categoryBoxSize, buttonSizeS, boxSizeS);
 
               return Column(
                 children: [
@@ -112,17 +106,8 @@ class CategorySection extends StatelessWidget {
                                 top: categoryBoxSize.height * 0.85,
                                 child: CommonButton(
                                   text: category.name,
-                                  height: isBigScreen
-                                      ? categoryBoxSize.height *
-                                          (buttonSizeL.height / boxSizeL.height)
-                                      : categoryBoxSize.height *
-                                          (buttonSizeS.height /
-                                              boxSizeS.height),
-                                  width: isBigScreen
-                                      ? categoryBoxSize.width *
-                                          (buttonSizeL.width / boxSizeL.width)
-                                      : categoryBoxSize.width *
-                                          (buttonSizeS.width / boxSizeS.width),
+                                  height: buttonSize.height,
+                                  width: buttonSize.width,
                                   fontSize: isBigScreen
                                       ? categoryBoxSize.height *
                                           (24 / boxSizeL.height)
