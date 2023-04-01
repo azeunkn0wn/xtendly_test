@@ -87,6 +87,26 @@ class SaleBannerScrollingText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    const textScroll = TextScroll(
+      'SALE      SALE      SALE      SALE      SALE      SALE      SALE      SALE      SALE      SALE      SALE      SALE      SALE      SALE      SALE      SALE      SALE      SALE      SALE      SALE      SALE      SALE      SALE      SALE      SALE      SALE      SALE      SALE      ',
+      velocity: Velocity(pixelsPerSecond: Offset(50, 0)),
+      textAlign: TextAlign.center,
+      style: TextStyle(
+        color: Color(0xFFCF4242),
+        fontSize: 50,
+        fontWeight: FontWeight.w600,
+      ),
+    );
+    const textScrollMobile = TextScroll(
+      'SALE      SALE      SALE      SALE      SALE      SALE      SALE      SALE      SALE      SALE      SALE      SALE      SALE      SALE      SALE      SALE      SALE      SALE      SALE      SALE      SALE      SALE      SALE      SALE      SALE      SALE      SALE      SALE      ',
+      velocity: Velocity(pixelsPerSecond: Offset(50, 0)),
+      textAlign: TextAlign.center,
+      style: TextStyle(
+        color: Color(0xFFCF4242),
+        fontSize: 35,
+        fontWeight: FontWeight.w600,
+      ),
+    );
     return Container(
       height: isBigScreen ? 77 : 46,
       decoration: BoxDecoration(
@@ -105,16 +125,7 @@ class SaleBannerScrollingText extends StatelessWidget {
             child: ScrollConfiguration(
               behavior:
                   ScrollConfiguration.of(context).copyWith(scrollbars: false),
-              child: TextScroll(
-                'SALE      SALE      SALE      SALE      SALE      SALE      SALE      SALE      SALE      SALE      SALE      SALE      SALE      SALE      SALE      SALE      SALE      SALE      SALE      SALE      SALE      SALE      SALE      SALE      SALE      SALE      SALE      SALE      ',
-                velocity: const Velocity(pixelsPerSecond: Offset(50, 0)),
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  color: const Color(0xFFCF4242),
-                  fontSize: isBigScreen ? 50 : 35,
-                  fontWeight: FontWeight.w600,
-                ),
-              ),
+              child: isBigScreen ? textScroll : textScrollMobile,
             ),
           ),
         ],
