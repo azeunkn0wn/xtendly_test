@@ -11,6 +11,8 @@ class SaleItems extends StatelessWidget {
     required this.state,
   });
 
+  static bool useScrollingText = true;
+
   @override
   Widget build(BuildContext context) {
     final isBigScreen = ResponsiveWrapper.of(context).isLargerThan(TABLET);
@@ -19,14 +21,18 @@ class SaleItems extends StatelessWidget {
       height: 1300,
       child: Column(
         children: [
-          SaleBannerScrollingText(isBigScreen: isBigScreen),
-          // SaleBanner(isBigScreen: isBigScreen),
+          if (useScrollingText)
+            SaleBannerScrollingText(isBigScreen: isBigScreen)
+          else
+            SaleBanner(isBigScreen: isBigScreen),
+          Container(),
         ],
       ),
     );
   }
 }
 
+/// Static SALE banner
 class SaleBanner extends StatelessWidget {
   const SaleBanner({
     super.key,
@@ -70,6 +76,7 @@ class SaleBanner extends StatelessWidget {
   }
 }
 
+/// Scrolling text animated SALE banner
 class SaleBannerScrollingText extends StatelessWidget {
   const SaleBannerScrollingText({
     super.key,
