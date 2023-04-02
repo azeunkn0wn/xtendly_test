@@ -121,42 +121,9 @@ class BodyContent extends StatelessWidget {
       children: [
         const HeaderWidget(),
         CategorySection(state: state),
-        SaleItems(state: state),
-        // ItemsGrid(state: state),
+        const SaleItems(),
         const Footer(),
       ],
-    );
-  }
-}
-
-class ItemsGrid extends StatelessWidget {
-  const ItemsGrid({
-    super.key,
-    required this.state,
-  });
-
-  final ItemsState state;
-
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      height: 200,
-      child: state.maybeMap(
-        orElse: () => const Center(
-          child: CircularProgressIndicator(),
-        ),
-        loadSuccess: (state) => ListView.builder(
-          shrinkWrap: true,
-          itemCount: state.items.length,
-          itemBuilder: (context, index) {
-            final item = state.items[index];
-            return ListTile(
-              title: Text(item.name),
-              subtitle: Text(item.image),
-            );
-          },
-        ),
-      ),
     );
   }
 }
