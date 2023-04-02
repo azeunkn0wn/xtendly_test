@@ -24,38 +24,17 @@ class SaleItems extends StatelessWidget {
         else
           const SaleBanner(),
         SizedBox(
-          height: ResponsiveValue<double>(
-            context,
-            defaultValue: 79,
-            valueWhen: const [
-              Condition.largerThan(name: TABLET, value: 79),
-              Condition.smallerThan(name: TABLET, value: 54),
-            ],
-          ).value,
+          height: desktopOrMobileSize(context, 79, 54) as double,
         ),
         const ItemsGrid(),
         CommonButton(
           text: 'More',
           size: const Size(218, 57),
           sizeMobile: const Size(124, 32),
-          fontSize: ResponsiveValue<double>(
-            context,
-            defaultValue: 24,
-            valueWhen: [
-              const Condition.largerThan(name: TABLET, value: 24),
-              const Condition.smallerThan(name: TABLET, value: 18),
-            ],
-          ).value,
+          fontSize: desktopOrMobileSize(context, 24.0, 18.0) as double,
         ),
         SizedBox(
-          height: ResponsiveValue<double>(
-            context,
-            defaultValue: 65,
-            valueWhen: const [
-              Condition.largerThan(name: TABLET, value: 65),
-              Condition.smallerThan(name: TABLET, value: 72),
-            ],
-          ).value,
+          height: desktopOrMobileSize(context, 65, 72) as double,
         ),
       ],
     );
