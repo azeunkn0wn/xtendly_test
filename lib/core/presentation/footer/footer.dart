@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 import 'package:xtendly_test/core/presentation/app_bar/logo.dart';
+import 'package:xtendly_test/core/size_operations.dart';
 
 class Footer extends StatelessWidget {
   const Footer({
@@ -86,12 +87,16 @@ class Footer extends StatelessWidget {
       return ResponsiveRowColumnItem(
         rowFlex: 2,
         child: Container(
-          padding: ResponsiveWrapper.of(context).isLargerThan(TABLET)
-              ? null
-              : const EdgeInsets.only(left: 20),
-          alignment: ResponsiveWrapper.of(context).isLargerThan(TABLET)
-              ? Alignment.center
-              : Alignment.centerLeft,
+          padding: desktopOrMobileSize(
+            context,
+            null,
+            const EdgeInsets.only(left: 20),
+          ) as EdgeInsets?,
+          alignment: desktopOrMobileSize(
+            context,
+            Alignment.center,
+            Alignment.centerLeft,
+          ) as Alignment?,
           width: 250,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -101,16 +106,14 @@ class Footer extends StatelessWidget {
                 child: Text(
                   title,
                   style: TextStyle(
-                    fontSize: ResponsiveWrapper.of(context).isLargerThan(TABLET)
-                        ? 21.0
-                        : 18.0,
+                    fontSize:
+                        desktopOrMobileSize(context, 21.0, 18.0) as double?,
                     fontWeight: FontWeight.w600,
                   ),
                 ),
               ),
-              ...ResponsiveWrapper.of(context).isLargerThan(TABLET)
-                  ? linkItems
-                  : [],
+              ...desktopOrMobileSize(context, linkItems, <Widget>[])
+                  as List<Widget>,
             ],
           ),
         ),
