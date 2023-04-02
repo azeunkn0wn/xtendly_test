@@ -1,26 +1,31 @@
 import 'package:flutter/material.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 import 'package:xtendly_test/core/presentation/common_button.dart';
 import 'package:xtendly_test/core/size_operations.dart';
-import 'package:xtendly_test/home/application/items_notifier.dart';
 import 'package:xtendly_test/home/domain/category.dart';
 import 'package:xtendly_test/home/domain/item.dart';
+import 'package:xtendly_test/home/shared/provider.dart';
 
-class CategorySection extends StatelessWidget {
-  final ItemsState state;
+class CategorySection extends ConsumerWidget {
   const CategorySection({
     super.key,
-    required this.state,
   });
 
-  // Size references from figma
-  static const sectionSizeL = Size(1440, 1000);
-  static const sectionSizeS = Size(375, 1096);
+  // Sizes from figma
+  static const refSectionSizeL = Size(1440, 1000);
+  static const refSectionSizeS = Size(375, 1096);
 
-  static const boxSizeL = Size(410, 600);
-  static const boxSizeS = Size(204.71, 300);
-  static const buttonSizeL = Size(198.78, 51.98);
-  static const buttonSizeS = Size(127.66, 25.99);
+  static const refBoxSizeL = Size(410, 600);
+  static const refBoxSizeS = Size(204.71, 300);
+  static const refButtonSizeL = Size(198.78, 51.98);
+  static const refButtonSizeS = Size(127.66, 25.99);
+
+//calculated sizes
+  static final Size boxSizeL = divideSize(refBoxSizeL, refSectionSizeL);
+  static final Size boxSizeS = divideSize(refBoxSizeS, refSectionSizeS);
+  static final Size buttonSizeL = divideSize(refButtonSizeL, refBoxSizeL);
+  static final Size buttonSizeS = divideSize(refButtonSizeS, refBoxSizeS);
 
   static final categoriesInManualOrder = [
     const Category(name: 'Sweatshirts'),
@@ -29,16 +34,14 @@ class CategorySection extends StatelessWidget {
   ];
 
   @override
-  Widget build(BuildContext context) {
-    final isBigScreen = ResponsiveWrapper.of(context).isLargerThan(TABLET);
-
+  Widget build(BuildContext context, WidgetRef ref) {
+    final state = ref.watch(itemsNotifierProvider);
     return state.maybeMap(
       orElse: () => const Center(
         child: CircularProgressIndicator(),
       ),
       loadSuccess: (state) {
         final Map<Category, List<Item>> categoryItem = {};
-
         for (final item in state.items) {
           if (item.categories != null && item.categories!.isNotEmpty) {
             for (final category in item.categories!) {
@@ -52,28 +55,27 @@ class CategorySection extends StatelessWidget {
         return ColoredBox(
           color: const Color(0xFFEBEAE8),
           child: AspectRatio(
-            aspectRatio: isBigScreen
-                ? sectionSizeL.aspectRatio
-                : sectionSizeS.aspectRatio,
+            aspectRatio: desktopOrMobileSize(
+              context,
+              refSectionSizeL.aspectRatio,
+              refSectionSizeS.aspectRatio,
+            ) as double,
             child: LayoutBuilder(
               builder: (context, constraints) {
                 final currentScreenSize = constraints.biggest;
-                final categoryBoxSize = isBigScreen
-                    ? scaleByReference(
-                        currentScreenSize,
-                        boxSizeL,
-                        sectionSizeL,
-                      )
-                    : scaleByReference(
-                        currentScreenSize,
-                        boxSizeS,
-                        sectionSizeS,
-                      );
+                final categoryBoxSize = desktopOrMobileSize(
+                  context,
+                  multiplySize(currentScreenSize, boxSizeL),
+                  multiplySize(currentScreenSize, boxSizeS),
+                ) as Size;
 
-                final buttonSize = isBigScreen
-                    ? scaleByReference(categoryBoxSize, buttonSizeL, boxSizeL)
-                    : scaleByReference(categoryBoxSize, buttonSizeS, boxSizeS);
-
+                final Size buttonSize =
+                    multiplySize(categoryBoxSize, buttonSizeL);
+                final Size buttonSizeMobile =
+                    multiplySize(categoryBoxSize, buttonSizeS);
+                final textSize = buttonSize.height * 24 / refButtonSizeL.height;
+                final textSizeMobile =
+                    buttonSizeMobile.height * 16 / refButtonSizeS.height;
                 return Column(
                   children: [
                     ResponsiveRowColumn(
@@ -84,10 +86,11 @@ class CategorySection extends StatelessWidget {
                         top: 53,
                       ),
                       columnSpacing: 32,
-                      layout:
-                          ResponsiveWrapper.of(context).isSmallerThan(DESKTOP)
-                              ? ResponsiveRowColumnType.COLUMN
-                              : ResponsiveRowColumnType.ROW,
+                      layout: desktopOrMobileSize(
+                        context,
+                        ResponsiveRowColumnType.ROW,
+                        ResponsiveRowColumnType.COLUMN,
+                      ) as ResponsiveRowColumnType,
                       children: [
                         for (final category in categoriesInManualOrder)
                           ResponsiveRowColumnItem(
@@ -126,13 +129,13 @@ class CategorySection extends StatelessWidget {
                                     top: categoryBoxSize.height * 0.85,
                                     child: CommonButton(
                                       text: category.name,
-                                      height: buttonSize.height,
-                                      width: buttonSize.width,
-                                      fontSize: isBigScreen
-                                          ? categoryBoxSize.height *
-                                              (24 / boxSizeL.height)
-                                          : categoryBoxSize.height *
-                                              (15 / boxSizeS.height),
+                                      size: buttonSize,
+                                      sizeMobile: buttonSizeMobile,
+                                      fontSize: desktopOrMobileSize(
+                                        context,
+                                        textSize,
+                                        textSizeMobile,
+                                      ) as double,
                                     ),
                                   ),
                                 ],
@@ -149,14 +152,13 @@ class CategorySection extends StatelessWidget {
                           fit: BoxFit.fitHeight,
                           child: Text(
                             '''
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-        sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-        Ut enim ad minim veniam, quis nostrud exercitation ullamco
-        laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit
-        in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-        Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
-        deserunt mollit anim id est laborum.
-                          ''',
+Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+Ut enim ad minim veniam, quis nostrud exercitation ullamco
+laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit
+in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
+deserunt mollit anim id est laborum.''',
                             textAlign: TextAlign.center,
                             // overflow: TextOverflow.clip,
                             style: TextStyle(
