@@ -95,14 +95,7 @@ class _ResponsiveAppBarState extends State<ResponsiveAppBar> {
           ),
         ],
       ),
-      child: ResponsiveValue(
-        context,
-        defaultValue: layoutBig,
-        valueWhen: [
-          Condition.largerThan(name: TABLET, value: layoutBig),
-          Condition.smallerThan(name: TABLET, value: layoutSmall)
-        ],
-      ).value,
+      child: desktopOrMobileSize(context, layoutBig, layoutSmall) as Widget,
     );
   }
 }
