@@ -139,12 +139,12 @@ class ContactDetails extends StatelessWidget {
   Widget build(BuildContext context) {
     final double dimension = ResponsiveValue(
       context,
-      defaultValue: 130,
+      defaultValue: 130.0,
       valueWhen: [
-        const Condition.largerThan(name: DESKTOP, value: 130),
-        const Condition.smallerThan(name: DESKTOP, value: 100),
+        const Condition.largerThan(name: DESKTOP, value: 130.0),
+        const Condition.smallerThan(name: DESKTOP, value: 100.0),
       ],
-    ).value! as double;
+    ).value!;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [

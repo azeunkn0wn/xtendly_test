@@ -63,8 +63,8 @@ class _HeaderWidgetState extends State<HeaderWidget> {
                     height * 0.249,
                     height * 0.612,
                   ) as double,
-                  left:
-                      desktopOrMobileSize(context, 0, width * 0.464) as double,
+                  left: desktopOrMobileSize(context, 0.0, width * 0.464)
+                      as double,
                   width: desktopOrMobileSize(
                     context,
                     width * box1Size.width,
@@ -88,7 +88,7 @@ class _HeaderWidgetState extends State<HeaderWidget> {
                     height * 0.210,
                     height * 0.138,
                   ) as double,
-                  right: 0,
+                  right: 0.0,
                   width: desktopOrMobileSize(
                     context,
                     width * box2Size.width,
@@ -138,11 +138,12 @@ class _HeaderWidgetState extends State<HeaderWidget> {
                     height * 0.786,
                     height * 0.5,
                   ) as double,
-                  height: desktopOrMobileSize(context, 57, 47) as double,
-                  width: desktopOrMobileSize(context, 218, 180) as double,
+                  height: desktopOrMobileSize(context, 57.0, 47.0) as double,
+                  width: desktopOrMobileSize(context, 218.0, 180.0) as double,
                   child: CommonButton(
                     text: 'Shop Now',
-                    fontSize: desktopOrMobileSize(context, 24, 20) as double,
+                    fontSize:
+                        desktopOrMobileSize(context, 24.0, 20.0) as double,
                   ),
                 )
               ],

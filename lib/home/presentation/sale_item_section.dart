@@ -24,7 +24,7 @@ class SaleItems extends StatelessWidget {
         else
           const SaleBanner(),
         SizedBox(
-          height: desktopOrMobileSize(context, 79, 54) as double,
+          height: desktopOrMobileSize(context, 79.0, 54.0) as double,
         ),
         const ItemsGrid(),
         CommonButton(
@@ -34,7 +34,7 @@ class SaleItems extends StatelessWidget {
           fontSize: desktopOrMobileSize(context, 24.0, 18.0) as double,
         ),
         SizedBox(
-          height: desktopOrMobileSize(context, 65, 72) as double,
+          height: desktopOrMobileSize(context, 65.0, 72.0) as double,
         ),
       ],
     );
@@ -221,9 +221,10 @@ class ItemsGrid extends ConsumerWidget {
           padding: const EdgeInsets.only(left: 16, right: 16, bottom: 40),
           shrinkWrap: true,
           gridDelegate: ResponsiveGridDelegate(
-            crossAxisSpacing: desktopOrMobileSize(context, 27, 5) as double,
-            mainAxisSpacing: desktopOrMobileSize(context, 40, 24) as double,
-            crossAxisExtent: desktopOrMobileSize(context, 313, 162) as double,
+            crossAxisSpacing: desktopOrMobileSize(context, 27.0, 5.0) as double,
+            mainAxisSpacing: desktopOrMobileSize(context, 40.0, 24.0) as double,
+            crossAxisExtent:
+                desktopOrMobileSize(context, 313.0, 162.0) as double,
             childAspectRatio:
                 desktopOrMobileSize(context, 313 / 464, 162 / 249) as double,
           ),
@@ -350,8 +351,8 @@ class ItemsGrid extends ConsumerWidget {
                           textAlign: TextAlign.center,
                           style: TextStyle(
                             color: Colors.white,
-                            fontSize:
-                                desktopOrMobileSize(context, 18, 10) as double,
+                            fontSize: desktopOrMobileSize(context, 18.0, 10.0)
+                                as double,
                           ),
                         ),
                       ),
