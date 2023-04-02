@@ -242,15 +242,11 @@ class ItemsGrid extends ConsumerWidget {
           padding: const EdgeInsets.only(left: 16, right: 16, bottom: 40),
           shrinkWrap: true,
           gridDelegate: ResponsiveGridDelegate(
-            crossAxisSpacing:
-                desktopOrMobileScreenSize(context, 27, 5) as double,
-            mainAxisSpacing:
-                desktopOrMobileScreenSize(context, 40, 24) as double,
-            crossAxisExtent:
-                desktopOrMobileScreenSize(context, 313, 162) as double,
+            crossAxisSpacing: desktopOrMobileSize(context, 27, 5) as double,
+            mainAxisSpacing: desktopOrMobileSize(context, 40, 24) as double,
+            crossAxisExtent: desktopOrMobileSize(context, 313, 162) as double,
             childAspectRatio:
-                desktopOrMobileScreenSize(context, 313 / 464, 162 / 249)
-                    as double,
+                desktopOrMobileSize(context, 313 / 464, 162 / 249) as double,
           ),
           itemBuilder: (BuildContext context, int index) {
             return InkWell(

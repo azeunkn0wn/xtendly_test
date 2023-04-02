@@ -16,7 +16,7 @@ Size divideSize(Size size1, Size size2) {
 }
 
 /// shortcut for ResponsiveValue
-dynamic desktopOrMobileScreenSize(
+dynamic desktopOrMobileSize(
   BuildContext context,
   dynamic desktopSize,
   dynamic mobileSize,

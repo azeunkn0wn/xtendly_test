@@ -36,7 +36,7 @@ class _HeaderWidgetState extends State<HeaderWidget> {
   @override
   Widget build(BuildContext context) {
     return AspectRatio(
-      aspectRatio: desktopOrMobileScreenSize(
+      aspectRatio: desktopOrMobileSize(
         context,
         headerSectionSize.width / headerSectionSize.height,
         headerSectionSizeMobile.width / headerSectionSizeMobile.height,
@@ -58,19 +58,19 @@ class _HeaderWidgetState extends State<HeaderWidget> {
                 AnimatedPositioned(
                   curve: Curves.easeInOutQuart,
                   duration: const Duration(milliseconds: 500),
-                  top: desktopOrMobileScreenSize(
+                  top: desktopOrMobileSize(
                     context,
                     height * 0.249,
                     height * 0.612,
                   ) as double,
-                  left: desktopOrMobileScreenSize(context, 0, width * 0.464)
-                      as double,
-                  width: desktopOrMobileScreenSize(
+                  left:
+                      desktopOrMobileSize(context, 0, width * 0.464) as double,
+                  width: desktopOrMobileSize(
                     context,
                     width * box1Size.width,
                     width * box1SizeMobile.width,
                   ) as double?,
-                  height: desktopOrMobileScreenSize(
+                  height: desktopOrMobileSize(
                     context,
                     height * box1Size.height,
                     height * box1SizeMobile.height,
@@ -83,18 +83,18 @@ class _HeaderWidgetState extends State<HeaderWidget> {
                 AnimatedPositioned(
                   curve: Curves.easeInOutQuart,
                   duration: const Duration(milliseconds: 500),
-                  top: desktopOrMobileScreenSize(
+                  top: desktopOrMobileSize(
                     context,
                     height * 0.210,
                     height * 0.138,
                   ) as double,
                   right: 0,
-                  width: desktopOrMobileScreenSize(
+                  width: desktopOrMobileSize(
                     context,
                     width * box2Size.width,
                     width * box2SizeMobile.width,
                   ) as double?,
-                  height: desktopOrMobileScreenSize(
+                  height: desktopOrMobileSize(
                     context,
                     height * box2Size.height,
                     height * box2SizeMobile.height,
@@ -107,22 +107,22 @@ class _HeaderWidgetState extends State<HeaderWidget> {
                 AnimatedPositioned(
                   curve: Curves.easeInOutQuart,
                   duration: const Duration(milliseconds: 500),
-                  top: desktopOrMobileScreenSize(
+                  top: desktopOrMobileSize(
                     context,
                     height * 0.300,
                     height * 0.362,
                   ) as double,
-                  left: desktopOrMobileScreenSize(
+                  left: desktopOrMobileSize(
                     context,
                     width * 0.246,
                     width * 0.05,
                   ) as double,
-                  width: desktopOrMobileScreenSize(
+                  width: desktopOrMobileSize(
                     context,
                     width * box3Size.width,
                     width * box3SizeMobile.width,
                   ) as double?,
-                  height: desktopOrMobileScreenSize(
+                  height: desktopOrMobileSize(
                     context,
                     height * box3Size.height,
                     height * box3SizeMobile.height,
@@ -133,17 +133,16 @@ class _HeaderWidgetState extends State<HeaderWidget> {
                   ),
                 ),
                 Positioned(
-                  top: desktopOrMobileScreenSize(
+                  top: desktopOrMobileSize(
                     context,
                     height * 0.786,
                     height * 0.5,
                   ) as double,
-                  height: desktopOrMobileScreenSize(context, 57, 47) as double,
-                  width: desktopOrMobileScreenSize(context, 218, 180) as double,
+                  height: desktopOrMobileSize(context, 57, 47) as double,
+                  width: desktopOrMobileSize(context, 218, 180) as double,
                   child: CommonButton(
                     text: 'Shop Now',
-                    fontSize:
-                        desktopOrMobileScreenSize(context, 24, 20) as double,
+                    fontSize: desktopOrMobileSize(context, 24, 20) as double,
                   ),
                 )
               ],

@@ -23,11 +23,10 @@ class CommonButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: desktopOrMobileScreenSize(context, size?.width, sizeMobile?.width)
+      width: desktopOrMobileSize(context, size?.width, sizeMobile?.width)
           as double?,
-      height:
-          desktopOrMobileScreenSize(context, size?.height, sizeMobile?.height)
-              as double?,
+      height: desktopOrMobileSize(context, size?.height, sizeMobile?.height)
+          as double?,
       child: ElevatedButton(
         onPressed: onPressed ??
             () {
