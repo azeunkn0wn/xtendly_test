@@ -6,7 +6,6 @@ import 'package:xtendly_test/core/presentation/app_bar/app_bar.dart';
 import 'package:xtendly_test/core/presentation/footer/footer.dart';
 import 'package:xtendly_test/core/presentation/top_text_button.dart';
 import 'package:xtendly_test/core/presentation/widget_constants.dart';
-import 'package:xtendly_test/home/application/items_notifier.dart';
 import 'package:xtendly_test/home/presentation/category.dart';
 import 'package:xtendly_test/home/presentation/header.dart';
 import 'package:xtendly_test/home/presentation/sale_item_section.dart';
@@ -59,14 +58,12 @@ class _StateTestState extends ConsumerState<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    final state = ref.watch(itemsNotifierProvider);
-
     return Scaffold(
       body: Stack(
         children: [
           SingleChildScrollView(
             controller: _controller,
-            child: BodyContent(state: state),
+            child: const BodyContent(),
           ),
           const ResponsiveVisibility(
             hiddenWhen: [
@@ -106,19 +103,16 @@ class _StateTestState extends ConsumerState<HomePage> {
 class BodyContent extends StatelessWidget {
   const BodyContent({
     super.key,
-    required this.state,
   });
-
-  final ItemsState state;
 
   @override
   Widget build(BuildContext context) {
     return Column(
-      children: [
-        const HeaderWidget(),
-        CategorySection(state: state),
-        const SaleItems(),
-        const Footer(),
+      children: const [
+        HeaderWidget(),
+        CategorySection(),
+        SaleItems(),
+        Footer(),
       ],
     );
   }
