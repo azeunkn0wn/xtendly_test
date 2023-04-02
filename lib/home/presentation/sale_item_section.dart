@@ -17,7 +17,6 @@ class SaleItems extends StatelessWidget {
   static const bool useScrollingText = true;
   @override
   Widget build(BuildContext context) {
-    print('sale items build');
     return Column(
       children: [
         if (useScrollingText)
@@ -71,7 +70,6 @@ class SaleBanner extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print('sale banner build');
     return Container(
       padding: EdgeInsets.symmetric(
         horizontal: ResponsiveValue<double>(
@@ -154,8 +152,6 @@ class SaleBannerScrollingText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print('sale banner scrolling text build');
-
     return Container(
       height: ResponsiveValue<double>(
         context,
@@ -230,7 +226,6 @@ class ItemsGrid extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    print('grid build');
     final state = ref.watch(itemsNotifierProvider);
     return state.maybeMap(
       orElse: () => const Center(
