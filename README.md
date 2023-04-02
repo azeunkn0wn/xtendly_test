@@ -1,5 +1,7 @@
 # xtendly_test
 
+[![Codemagic build status](https://api.codemagic.io/apps/64297cc8bd97d1d71cc6f909/64297cc8bd97d1d71cc6f908/status_badge.svg)](https://codemagic.io/apps/64297cc8bd97d1d71cc6f909/64297cc8bd97d1d71cc6f908/latest_build)
+
 [Figma Design Here](https://www.figma.com/file/oFhx3T6kPyaHgZZOJMLs9s/Untitled?t=DziXhgdx66k4mAbW-0)
 
 ## Cloning the Repo
