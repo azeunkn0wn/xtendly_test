@@ -6,12 +6,12 @@ import 'package:responsive_framework/responsive_framework.dart';
 import 'package:xtendly_test/core/presentation/app_bar/action_buttons.dart';
 import 'package:xtendly_test/core/presentation/app_bar/logo.dart';
 import 'package:xtendly_test/core/presentation/app_bar/navigation_buttons.dart';
+import 'package:xtendly_test/core/presentation/widget_constants.dart';
+import 'package:xtendly_test/core/size_operations.dart';
 
 class ResponsiveAppBar extends StatefulWidget {
-  final double height;
   const ResponsiveAppBar({
     super.key,
-    required this.height,
   });
 
   @override
@@ -80,7 +80,11 @@ class _ResponsiveAppBarState extends State<ResponsiveAppBar> {
     );
 
     return Container(
-      height: widget.height,
+      height: desktopOrMobileSize(
+        context,
+        appBarHeight,
+        appBarHeightMobile,
+      ) as double,
       decoration: BoxDecoration(
         color: Theme.of(context).appBarTheme.backgroundColor,
         boxShadow: [

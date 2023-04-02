@@ -93,11 +93,7 @@ class _StateTestState extends ConsumerState<HomePage> {
                   });
                 },
                 curve: Curves.linearToEaseOut,
-                child: ResponsiveAppBar(
-                  height: ResponsiveWrapper.of(context).isSmallerThan(TABLET)
-                      ? appBarHeightMobile
-                      : appBarHeight,
-                ),
+                child: const ResponsiveAppBar(),
               ),
             ),
           ),
