@@ -6,6 +6,7 @@ import 'package:xtendly_test/core/presentation/app_bar/app_bar.dart';
 import 'package:xtendly_test/core/presentation/footer/footer.dart';
 import 'package:xtendly_test/core/presentation/top_text_button.dart';
 import 'package:xtendly_test/core/presentation/widget_constants.dart';
+import 'package:xtendly_test/core/size_operations.dart';
 import 'package:xtendly_test/home/presentation/category.dart';
 import 'package:xtendly_test/home/presentation/header.dart';
 import 'package:xtendly_test/home/presentation/sale_item_section.dart';
@@ -72,9 +73,8 @@ class _StateTestState extends ConsumerState<HomePage> {
             child: TopTextButtons(),
           ),
           Positioned(
-            top: ResponsiveWrapper.of(context).isSmallerThan(TABLET)
-                ? topSpacingMobile
-                : topSpacing,
+            top: desktopOrMobileSize(context, topSpacing, topSpacingMobile)
+                as double?,
             left: 0,
             right: 0,
             child: Visibility(
