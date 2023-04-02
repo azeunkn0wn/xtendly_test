@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:xtendly_test/core/size_operations.dart';
 
 class CommonButton extends StatelessWidget {
-  final double? width;
-  final double? height;
+  /// Default button size for desktop
+  final Size? size;
+
+  /// Button size for mobile
+  final Size? sizeMobile;
   final VoidCallback? onPressed;
   final String text;
   final double? fontSize;
@@ -10,8 +14,8 @@ class CommonButton extends StatelessWidget {
   const CommonButton({
     super.key,
     required this.text,
-    this.width,
-    this.height,
+    this.size,
+    this.sizeMobile,
     this.fontSize,
     this.onPressed,
   });
@@ -19,8 +23,11 @@ class CommonButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: width,
-      height: height,
+      width: desktopOrMobileScreenSize(context, size?.width, sizeMobile?.width)
+          as double?,
+      height:
+          desktopOrMobileScreenSize(context, size?.height, sizeMobile?.height)
+              as double?,
       child: ElevatedButton(
         onPressed: onPressed ??
             () {
