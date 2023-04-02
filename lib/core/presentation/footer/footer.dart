@@ -92,11 +92,7 @@ class Footer extends StatelessWidget {
             null,
             const EdgeInsets.only(left: 20),
           ) as EdgeInsets?,
-          alignment: desktopOrMobileSize(
-            context,
-            Alignment.center,
-            Alignment.centerLeft,
-          ) as Alignment?,
+          alignment: Alignment.topLeft,
           width: 250,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -112,8 +108,15 @@ class Footer extends StatelessWidget {
                   ),
                 ),
               ),
-              ...desktopOrMobileSize(context, linkItems, <Widget>[])
-                  as List<Widget>,
+              ...ResponsiveValue<List<Widget>>(
+                context,
+                defaultValue: linkItems,
+                valueWhen: [
+                  const Condition.smallerThan(name: DESKTOP, value: []),
+                ],
+              ).value!,
+              // ...desktopOrMobileSize(context, linkItems, <Widget>[])
+              //     as List<Widget>,
             ],
           ),
         ),
