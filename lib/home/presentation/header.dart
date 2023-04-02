@@ -15,7 +15,7 @@ class HeaderWidget extends StatefulWidget {
 
 class _HeaderWidgetState extends State<HeaderWidget> {
   // figma design sizes
-  static const headerSectionSize = Size(1440, 1303);
+  static const headerSectionSize = Size(1440, 1024);
   static const headerSectionSizeMobile = Size(375, 812);
 
   final box1Size = divideSize(const Size(381, 514), headerSectionSize);
