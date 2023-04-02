@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:responsive_framework/responsive_framework.dart';
 
 import 'package:xtendly_test/core/presentation/common_button.dart';
+
+import 'package:xtendly_test/core/size_operations.dart';
 
 class HeaderWidget extends StatefulWidget {
   const HeaderWidget({
@@ -13,11 +14,33 @@ class HeaderWidget extends StatefulWidget {
 }
 
 class _HeaderWidgetState extends State<HeaderWidget> {
+  // figma design sizes
+  static const headerSectionSize = Size(1440, 1303);
+  static const headerSectionSizeMobile = Size(375, 812);
+
+  final box1Size = divideSize(const Size(381, 514), headerSectionSize);
+  final box1SizeMobile =
+      divideSize(const Size(187, 263), headerSectionSizeMobile);
+  final box1Image = 'assets/images/3.png';
+
+  final box2Size = divideSize(const Size(724, 532), headerSectionSize);
+  final box2SizeMobile =
+      divideSize(const Size(267, 197), headerSectionSizeMobile);
+  final box2Image = 'assets/images/4.png';
+
+  final box3Size = divideSize(const Size(387, 564), headerSectionSize);
+  final box3SizeMobile =
+      divideSize(const Size(197, 294), headerSectionSizeMobile);
+  final box3Image = 'assets/images/2.png';
+
   @override
   Widget build(BuildContext context) {
-    final isBigScreen = ResponsiveWrapper.of(context).isLargerThan(TABLET);
     return AspectRatio(
-      aspectRatio: isBigScreen ? 1440 / 1024 : 375 / 812,
+      aspectRatio: desktopOrMobileScreenSize(
+        context,
+        headerSectionSize.width / headerSectionSize.height,
+        headerSectionSizeMobile.width / headerSectionSizeMobile.height,
+      ) as double,
       child: Container(
         decoration: const BoxDecoration(
           image: DecorationImage(
@@ -35,49 +58,92 @@ class _HeaderWidgetState extends State<HeaderWidget> {
                 AnimatedPositioned(
                   curve: Curves.easeInOutQuart,
                   duration: const Duration(milliseconds: 500),
-                  top: isBigScreen ? height * 0.249 : height * 0.612,
-                  left: isBigScreen ? 0 : width * 0.464,
-                  width: isBigScreen ? width * 0.264 : null,
-                  height: isBigScreen ? null : height * 0.324,
-                  child: const Image(
+                  top: desktopOrMobileScreenSize(
+                    context,
+                    height * 0.249,
+                    height * 0.612,
+                  ) as double,
+                  left: desktopOrMobileScreenSize(context, 0, width * 0.464)
+                      as double,
+                  width: desktopOrMobileScreenSize(
+                    context,
+                    width * box1Size.width,
+                    width * box1SizeMobile.width,
+                  ) as double?,
+                  height: desktopOrMobileScreenSize(
+                    context,
+                    height * box1Size.height,
+                    height * box1SizeMobile.height,
+                  ) as double?,
+                  child: Image(
                     fit: BoxFit.cover,
-                    image: AssetImage('assets/images/3.png'),
+                    image: AssetImage(box1Image),
                   ),
                 ),
                 AnimatedPositioned(
                   curve: Curves.easeInOutQuart,
                   duration: const Duration(milliseconds: 500),
-                  top: isBigScreen ? height * 0.210 : height * 0.138,
+                  top: desktopOrMobileScreenSize(
+                    context,
+                    height * 0.210,
+                    height * 0.138,
+                  ) as double,
                   right: 0,
-                  width: isBigScreen ? width * 0.502 : null,
-                  height: isBigScreen ? null : height * 0.243,
-                  child: const Image(
+                  width: desktopOrMobileScreenSize(
+                    context,
+                    width * box2Size.width,
+                    width * box2SizeMobile.width,
+                  ) as double?,
+                  height: desktopOrMobileScreenSize(
+                    context,
+                    height * box2Size.height,
+                    height * box2SizeMobile.height,
+                  ) as double?,
+                  child: Image(
                     fit: BoxFit.cover,
-                    image: AssetImage('assets/images/4.png'),
+                    image: AssetImage(box2Image),
                   ),
                 ),
                 AnimatedPositioned(
                   curve: Curves.easeInOutQuart,
                   duration: const Duration(milliseconds: 500),
-                  top: isBigScreen ? height * 0.300 : height * 0.362,
-                  left: isBigScreen ? width * 0.246 : width * 0.05,
-                  width: isBigScreen ? width * 0.264 : null,
-                  height: isBigScreen ? null : height * 0.362,
-                  child: ConstrainedBox(
-                    constraints: const BoxConstraints(),
-                    child: const Image(
-                      fit: BoxFit.cover,
-                      image: AssetImage('assets/images/2.png'),
-                    ),
+                  top: desktopOrMobileScreenSize(
+                    context,
+                    height * 0.300,
+                    height * 0.362,
+                  ) as double,
+                  left: desktopOrMobileScreenSize(
+                    context,
+                    width * 0.246,
+                    width * 0.05,
+                  ) as double,
+                  width: desktopOrMobileScreenSize(
+                    context,
+                    width * box3Size.width,
+                    width * box3SizeMobile.width,
+                  ) as double?,
+                  height: desktopOrMobileScreenSize(
+                    context,
+                    height * box3Size.height,
+                    height * box3SizeMobile.height,
+                  ) as double?,
+                  child: Image(
+                    fit: BoxFit.cover,
+                    image: AssetImage(box3Image),
                   ),
                 ),
                 Positioned(
-                  top: isBigScreen ? height * 0.786 : height * 0.5,
-                  height: isBigScreen ? 57 : 47,
-                  width: isBigScreen ? 218 : 180,
+                  top: desktopOrMobileScreenSize(
+                    context,
+                    height * 0.786,
+                    height * 0.5,
+                  ) as double,
+                  height: desktopOrMobileScreenSize(context, 57, 47) as double,
+                  width: desktopOrMobileScreenSize(context, 218, 180) as double,
                   child: CommonButton(
                     text: 'Shop Now',
-                    fontSize: isBigScreen ? 24 : 20,
+                    fontSize:
+                        desktopOrMobileScreenSize(context, 24, 20) as double,
                   ),
                 )
               ],
