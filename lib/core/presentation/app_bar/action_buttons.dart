@@ -49,7 +49,7 @@ class ActionButtons extends StatelessWidget {
                 height: 28,
                 width: 28,
                 child: SvgPicture.asset(
-                  'icons/unknown.svg',
+                  'assets/icons/unknown.svg',
                 ),
               ),
             ),
@@ -68,7 +68,7 @@ class ActionButtons extends StatelessWidget {
               height: 28,
               width: 28,
               child: SvgPicture.asset(
-                'icons/star_1.svg',
+                'assets/icons/star_1.svg',
               ),
             ),
           ),

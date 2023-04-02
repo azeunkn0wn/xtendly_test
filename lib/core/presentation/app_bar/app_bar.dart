@@ -68,7 +68,7 @@ class _ResponsiveAppBarState extends State<ResponsiveAppBar> {
               ScaffoldMessenger.of(context).showSnackBar(snackBar);
             },
             child: SvgPicture.asset(
-              'icons/burger.svg',
+              'assets/icons/burger.svg',
               colorFilter:
                   const ColorFilter.mode(Color(0xFFD9D9D9), BlendMode.srcIn),
             ),
