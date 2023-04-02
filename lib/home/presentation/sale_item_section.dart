@@ -228,19 +228,20 @@ class ItemsGrid extends ConsumerWidget {
                 desktopOrMobileSize(context, 313 / 464, 162 / 249) as double,
           ),
           itemBuilder: (BuildContext context, int index) {
-            return InkWell(
-              onTap: () {
-                final snackBar = SnackBar(
-                  content: Text('item #$index'),
-                );
-                ScaffoldMessenger.of(context).showSnackBar(snackBar);
-              },
-              child: SizedBox(
-                height: 505,
-                width: 340,
-                child: Stack(
-                  children: [
-                    Column(
+            return SizedBox(
+              height: 505,
+              width: 340,
+              child: Stack(
+                children: [
+                  InkWell(
+                    overlayColor: const MaterialStatePropertyAll(Colors.white),
+                    onTap: () {
+                      final snackBar = SnackBar(
+                        content: Text('item #$index'),
+                      );
+                      ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                    },
+                    child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Container(
@@ -264,6 +265,7 @@ class ItemsGrid extends ConsumerWidget {
                             image: DecorationImage(
                               image: AssetImage(state.items[index].image),
                             ),
+                            color: Colors.white,
                           ),
                         ),
                         const Spacer(),
@@ -315,48 +317,47 @@ class ItemsGrid extends ConsumerWidget {
                         ),
                       ],
                     ),
-                    Visibility(
-                      visible: state.items[index].discount != null &&
-                          state.items[index].discount! > 0,
-                      child: Positioned(
-                        left: desktopOrMobileScreenSize(
-                          context,
-                          discountTagPosition.dx,
-                          discountTagPositionMobile.dx,
-                        ) as double,
-                        top: desktopOrMobileScreenSize(
-                          context,
-                          discountTagPosition.dy,
-                          discountTagPositionMobile.dy,
-                        ) as double,
-                        height: desktopOrMobileScreenSize(
-                          context,
-                          refDiscountTagSize.height,
-                          refDiscountTagSizeMobile.height,
-                        ) as double,
-                        width: desktopOrMobileScreenSize(
-                          context,
-                          refDiscountTagSize.width,
-                          refDiscountTagSizeMobile.width,
-                        ) as double,
-                        child: Container(
-                          alignment: Alignment.center,
-                          color: const Color(0xFFE0CA9E),
-                          child: Text(
-                            '${state.items[index].discount! * 100}% OFF',
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize:
-                                  desktopOrMobileScreenSize(context, 18, 10)
-                                      as double,
-                            ),
+                  ),
+                  Visibility(
+                    visible: state.items[index].discount != null &&
+                        state.items[index].discount! > 0,
+                    child: Positioned(
+                      left: desktopOrMobileSize(
+                        context,
+                        discountTagPosition.dx,
+                        discountTagPositionMobile.dx,
+                      ) as double,
+                      top: desktopOrMobileSize(
+                        context,
+                        discountTagPosition.dy,
+                        discountTagPositionMobile.dy,
+                      ) as double,
+                      height: desktopOrMobileSize(
+                        context,
+                        refDiscountTagSize.height,
+                        refDiscountTagSizeMobile.height,
+                      ) as double,
+                      width: desktopOrMobileSize(
+                        context,
+                        refDiscountTagSize.width,
+                        refDiscountTagSizeMobile.width,
+                      ) as double,
+                      child: Container(
+                        alignment: Alignment.center,
+                        color: const Color(0xFFE0CA9E),
+                        child: Text(
+                          '${state.items[index].discount! * 100}% OFF',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize:
+                                desktopOrMobileSize(context, 18, 10) as double,
                           ),
                         ),
                       ),
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
             );
           },
