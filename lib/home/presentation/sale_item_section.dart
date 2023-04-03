@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:marquee/marquee.dart';
 import 'package:responsive_framework/responsive_framework.dart';
-import 'package:text_scroll/text_scroll.dart';
 import 'package:xtendly_test/core/presentation/common_button.dart';
 import 'package:xtendly_test/core/size_operations.dart';
 
@@ -124,64 +124,61 @@ class SaleBanner extends StatelessWidget {
 }
 
 /// Scrolling text animated SALE banner
-class SaleBannerScrollingText extends StatelessWidget {
+class SaleBannerScrollingText extends StatefulWidget {
   const SaleBannerScrollingText({
     super.key,
   });
 
   @override
+  State<SaleBannerScrollingText> createState() =>
+      _SaleBannerScrollingTextState();
+}
+
+class _SaleBannerScrollingTextState extends State<SaleBannerScrollingText> {
+  @override
   Widget build(BuildContext context) {
-    return Container(
-      height: ResponsiveValue<double>(
-        context,
-        defaultValue: 77.0,
-        valueWhen: const [
-          Condition.largerThan(
-            name: TABLET,
-            value: 77.0,
-          ),
-          Condition.smallerThan(
-            name: TABLET,
-            value: 46.0,
-          ),
-        ],
-      ).value,
-      decoration: BoxDecoration(
-        color: Colors.white,
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withOpacity(0.25),
-            blurRadius: 10,
-            offset: const Offset(4, 4),
-          )
-        ],
-      ),
-      child: Row(
-        children: [
-          Flexible(
-            child: ScrollConfiguration(
-              behavior:
-                  ScrollConfiguration.of(context).copyWith(scrollbars: false),
-              child: TextScroll(
-                saleText,
-                velocity: const Velocity(pixelsPerSecond: Offset(50, 0)),
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  color: const Color(0xFFCF4242),
-                  fontSize: ResponsiveValue<double>(
-                    context,
-                    defaultValue: 50,
-                    valueWhen: const [
-                      Condition.largerThan(name: TABLET, value: 50),
-                      Condition.smallerThan(name: TABLET, value: 35),
-                    ],
-                  ).value,
-                  fontWeight: FontWeight.w600,
-                ),
-              ),
+    return RepaintBoundary(
+      child: Container(
+        height: ResponsiveValue<double>(
+          context,
+          defaultValue: 77.0,
+          valueWhen: const [
+            Condition.largerThan(
+              name: TABLET,
+              value: 77.0,
             ),
+            Condition.smallerThan(
+              name: TABLET,
+              value: 46.0,
+            ),
+          ],
+        ).value,
+        decoration: BoxDecoration(
+          color: Colors.white,
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withOpacity(0.25),
+              blurRadius: 10,
+              offset: const Offset(4, 4),
+            )
+          ],
+        ),
+        child: Marquee(
+          text: 'SALE',
+          blankSpace: 50,
+          style: TextStyle(
+            color: const Color(0xFFCF4242),
+            fontSize: ResponsiveValue<double>(
+              context,
+              defaultValue: 50,
+              valueWhen: const [
+                Condition.largerThan(name: TABLET, value: 50),
+                Condition.smallerThan(name: TABLET, value: 35),
+              ],
+            ).value,
+            fontWeight: FontWeight.w600,
           ),
-        ],
+        ),
       ),
     );
   }
