@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:responsive_framework/responsive_framework.dart';
+import 'package:shimmer/shimmer.dart';
 import 'package:xtendly_test/core/presentation/common_button.dart';
+import 'package:xtendly_test/core/presentation/widget_constants.dart';
 import 'package:xtendly_test/core/size_operations.dart';
 import 'package:xtendly_test/home/domain/category.dart';
 import 'package:xtendly_test/home/domain/item.dart';
@@ -36,46 +38,107 @@ class CategorySection extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final state = ref.watch(itemsNotifierProvider);
-    return state.maybeMap(
-      orElse: () => const Center(
-        child: CircularProgressIndicator(),
-      ),
-      loadSuccess: (state) {
-        final Map<Category, List<Item>> categoryItem = {};
-        for (final item in state.items) {
-          if (item.categories != null && item.categories!.isNotEmpty) {
-            for (final category in item.categories!) {
-              categoryItem[category] == null
-                  ? categoryItem[category] = [item]
-                  : categoryItem[category]!.add(item);
-            }
-          }
-        }
 
-        return ColoredBox(
-          color: const Color(0xFFEBEAE8),
-          child: AspectRatio(
-            aspectRatio: desktopOrMobileSize(
+    return ColoredBox(
+      color: const Color(0xFFEBEAE8),
+      child: AspectRatio(
+        aspectRatio: desktopOrMobileSize(
+          context,
+          refSectionSizeL.aspectRatio,
+          refSectionSizeS.aspectRatio,
+        ) as double,
+        child: LayoutBuilder(
+          builder: (context, constraints) {
+            final currentScreenSize = constraints.biggest;
+            final categoryBoxSize = desktopOrMobileSize(
               context,
-              refSectionSizeL.aspectRatio,
-              refSectionSizeS.aspectRatio,
-            ) as double,
-            child: LayoutBuilder(
-              builder: (context, constraints) {
-                final currentScreenSize = constraints.biggest;
-                final categoryBoxSize = desktopOrMobileSize(
-                  context,
-                  multiplySize(currentScreenSize, boxSizeL),
-                  multiplySize(currentScreenSize, boxSizeS),
-                ) as Size;
+              multiplySize(currentScreenSize, boxSizeL),
+              multiplySize(currentScreenSize, boxSizeS),
+            ) as Size;
 
-                final Size buttonSize =
-                    multiplySize(categoryBoxSize, buttonSizeL);
-                final Size buttonSizeMobile =
-                    multiplySize(categoryBoxSize, buttonSizeS);
-                final textSize = buttonSize.height * 24 / refButtonSizeL.height;
-                final textSizeMobile =
-                    buttonSizeMobile.height * 16 / refButtonSizeS.height;
+            final Size buttonSize = multiplySize(categoryBoxSize, buttonSizeL);
+            final Size buttonSizeMobile =
+                multiplySize(categoryBoxSize, buttonSizeS);
+            final textSize = buttonSize.height * 24 / refButtonSizeL.height;
+            final textSizeMobile =
+                buttonSizeMobile.height * 16 / refButtonSizeS.height;
+
+            final Map<Category, List<Item>> categoryItem = {};
+            return state.maybeMap(
+              orElse: () {
+                if (enableShimmers) {
+                  return RepaintBoundary(
+                    child: Shimmer.fromColors(
+                      baseColor: Colors.grey.shade400,
+                      highlightColor: Colors.grey.shade300,
+                      child: ResponsiveRowColumn(
+                        rowSpacing: 40,
+                        rowMainAxisAlignment: MainAxisAlignment.center,
+                        rowPadding: const EdgeInsets.only(top: 116, bottom: 60),
+                        columnPadding: const EdgeInsets.only(
+                          top: 53,
+                        ),
+                        columnSpacing: 32,
+                        layout: desktopOrMobileSize(
+                          context,
+                          ResponsiveRowColumnType.ROW,
+                          ResponsiveRowColumnType.COLUMN,
+                        ) as ResponsiveRowColumnType,
+                        children: [
+                          for (final category in categoriesInManualOrder)
+                            ResponsiveRowColumnItem(
+                              child: Stack(
+                                alignment: Alignment.center,
+                                children: [
+                                  Container(
+                                    decoration: BoxDecoration(
+                                      color: Colors.white,
+                                      borderRadius: BorderRadius.circular(10),
+                                      boxShadow: [
+                                        BoxShadow(
+                                          color: Colors.black.withOpacity(0.25),
+                                          blurRadius: 10,
+                                          offset: const Offset(4, 4),
+                                        )
+                                      ],
+                                    ),
+                                    width: categoryBoxSize.width,
+                                    height: categoryBoxSize.height,
+                                  ),
+                                  Positioned(
+                                    top: categoryBoxSize.height * 0.85,
+                                    child: CommonButton(
+                                      text: category.name,
+                                      size: buttonSize,
+                                      sizeMobile: buttonSizeMobile,
+                                      fontSize: desktopOrMobileSize(
+                                        context,
+                                        textSize,
+                                        textSizeMobile,
+                                      ) as double,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                        ],
+                      ),
+                    ),
+                  );
+                } else {
+                  return const SizedBox.shrink();
+                }
+              },
+              loadSuccess: (state) {
+                for (final item in state.items) {
+                  if (item.categories != null && item.categories!.isNotEmpty) {
+                    for (final category in item.categories!) {
+                      categoryItem[category] == null
+                          ? categoryItem[category] = [item]
+                          : categoryItem[category]!.add(item);
+                    }
+                  }
+                }
                 return Column(
                   children: [
                     ResponsiveRowColumn(
@@ -172,10 +235,10 @@ deserunt mollit anim id est laborum.''',
                   ],
                 );
               },
-            ),
-          ),
-        );
-      },
+            );
+          },
+        ),
+      ),
     );
   }
 }

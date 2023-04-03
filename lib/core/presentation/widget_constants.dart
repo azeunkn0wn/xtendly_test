@@ -6,3 +6,4 @@ const topSpacingMobile = 15.0;
 const appBarHeightMobile = 53.0;
 
 const useScrollingText = true;
+const enableShimmers = true;

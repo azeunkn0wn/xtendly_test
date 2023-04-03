@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:marquee/marquee.dart';
 import 'package:responsive_framework/responsive_framework.dart';
+import 'package:shimmer/shimmer.dart';
 import 'package:xtendly_test/core/presentation/common_button.dart';
 import 'package:xtendly_test/core/presentation/widget_constants.dart';
 import 'package:xtendly_test/core/size_operations.dart';
@@ -167,7 +168,7 @@ class _SaleBannerScrollingTextState extends State<SaleBannerScrollingText> {
         ),
         child: Marquee(
           text: 'SALE',
-          blankSpace: 50,
+          blankSpace: 100,
           style: TextStyle(
             color: const Color(0xFFCF4242),
             fontSize: ResponsiveValue<double>(
@@ -206,9 +207,97 @@ class ItemsGrid extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final state = ref.watch(itemsNotifierProvider);
     return state.maybeMap(
-      orElse: () => const Center(
-        child: CircularProgressIndicator(),
-      ),
+      orElse: () {
+        if (enableShimmers) {
+          return RepaintBoundary(
+            child: Shimmer.fromColors(
+              baseColor: Colors.grey.shade400,
+              highlightColor: Colors.grey.shade300,
+              child: ResponsiveGridView.builder(
+                alignment: Alignment.center,
+                physics: const NeverScrollableScrollPhysics(),
+                itemCount: 4,
+                padding: const EdgeInsets.only(left: 16, right: 16, bottom: 40),
+                shrinkWrap: true,
+                gridDelegate: ResponsiveGridDelegate(
+                  crossAxisSpacing:
+                      desktopOrMobileSize(context, 27.0, 5.0) as double,
+                  mainAxisSpacing:
+                      desktopOrMobileSize(context, 40.0, 24.0) as double,
+                  crossAxisExtent:
+                      desktopOrMobileSize(context, 313.0, 162.0) as double,
+                  childAspectRatio:
+                      desktopOrMobileSize(context, 313 / 464, 162 / 249)
+                          as double,
+                ),
+                itemBuilder: (BuildContext context, int index) {
+                  return SizedBox(
+                    height: 505,
+                    width: 340,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Container(
+                          color: Colors.white,
+                          height: ResponsiveValue<double>(
+                            context,
+                            defaultValue: 400,
+                            valueWhen: const [
+                              Condition.largerThan(name: TABLET, value: 400),
+                              Condition.smallerThan(name: TABLET, value: 200),
+                            ],
+                          ).value,
+                          width: ResponsiveValue<double>(
+                            context,
+                            defaultValue: 272.95,
+                            valueWhen: const [
+                              Condition.largerThan(
+                                name: TABLET,
+                                value: 272.95,
+                              ),
+                              Condition.smallerThan(name: TABLET, value: 141),
+                            ],
+                          ).value,
+                        ),
+                        const Spacer(),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 8),
+                          child: Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                              color: Colors.white,
+                            ),
+                            height:
+                                desktopOrMobileSize(context, 18, 15) as double,
+                            width: 100,
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 2,
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 8),
+                          child: Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                              color: Colors.white,
+                            ),
+                            height:
+                                desktopOrMobileSize(context, 18, 13) as double,
+                            width: 75,
+                          ),
+                        ),
+                      ],
+                    ),
+                  );
+                },
+              ),
+            ),
+          );
+        } else {
+          return const SizedBox.shrink();
+        }
+      },
       loadSuccess: (state) {
         const maxItemCount = 8;
         return ResponsiveGridView.builder(
