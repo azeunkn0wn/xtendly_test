@@ -55,9 +55,7 @@ class _HeaderWidgetState extends State<HeaderWidget> {
             return Stack(
               alignment: Alignment.center,
               children: [
-                AnimatedPositioned(
-                  curve: Curves.easeInOutQuart,
-                  duration: const Duration(milliseconds: 500),
+                Positioned(
                   top: desktopOrMobileSize(
                     context,
                     height * 0.249,
@@ -80,9 +78,7 @@ class _HeaderWidgetState extends State<HeaderWidget> {
                     image: AssetImage(box1Image),
                   ),
                 ),
-                AnimatedPositioned(
-                  curve: Curves.easeInOutQuart,
-                  duration: const Duration(milliseconds: 500),
+                Positioned(
                   top: desktopOrMobileSize(
                     context,
                     height * 0.210,
@@ -104,9 +100,7 @@ class _HeaderWidgetState extends State<HeaderWidget> {
                     image: AssetImage(box2Image),
                   ),
                 ),
-                AnimatedPositioned(
-                  curve: Curves.easeInOutQuart,
-                  duration: const Duration(milliseconds: 500),
+                Positioned(
                   top: desktopOrMobileSize(
                     context,
                     height * 0.300,
