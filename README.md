@@ -4,6 +4,9 @@
 
 [Figma Design Here](https://www.figma.com/file/oFhx3T6kPyaHgZZOJMLs9s/Untitled?t=DziXhgdx66k4mAbW-0)
 
+[Flutter web app demo](https://xtendly_test.codemagic.app/) 
+
+
 ## Cloning the Repo
 
 1. Open your terminal or command prompt.
