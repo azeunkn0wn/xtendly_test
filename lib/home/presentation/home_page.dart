@@ -61,42 +61,49 @@ class _StateTestState extends ConsumerState<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Stack(
-        children: [
-          SingleChildScrollView(
-            controller: _controller,
-            child: const BodyContent(),
-          ),
-          const ResponsiveVisibility(
-            hiddenWhen: [
-              Condition.smallerThan(name: TABLET),
-            ],
-            child: TopTextButtons(),
-          ),
-          Positioned(
-            top: desktopOrMobileSize(context, topSpacing, topSpacingMobile)
-                as double?,
-            left: 0,
-            right: 0,
-            child: Visibility(
-              visible: _appBarIsVisible,
-              maintainAnimation: true,
-              maintainState: true,
-              child: AnimatedOpacity(
-                duration: const Duration(milliseconds: 500),
-                opacity: _appBarIsOpaque,
-                onEnd: () {
-                  setState(() {
-                    _appBarIsVisible = _appBarIsOpaque > 0.0;
-                  });
-                },
-                curve: Curves.linearToEaseOut,
-                child: const ResponsiveAppBar(),
+    return SafeArea(
+      child: Scaffold(
+        body: Stack(
+          children: [
+            ListView(
+              controller: _controller,
+              children: const [
+                HeaderWidget(),
+                CategorySection(),
+                SaleItems(),
+                Footer(),
+              ],
+            ),
+            const ResponsiveVisibility(
+              hiddenWhen: [
+                Condition.smallerThan(name: TABLET),
+              ],
+              child: TopTextButtons(),
+            ),
+            Positioned(
+              top: desktopOrMobileSize(context, topSpacing, topSpacingMobile)
+                  as double?,
+              left: 0,
+              right: 0,
+              child: Visibility(
+                visible: _appBarIsVisible,
+                maintainAnimation: true,
+                maintainState: true,
+                child: AnimatedOpacity(
+                  duration: const Duration(milliseconds: 500),
+                  opacity: _appBarIsOpaque,
+                  onEnd: () {
+                    setState(() {
+                      _appBarIsVisible = _appBarIsOpaque > 0.0;
+                    });
+                  },
+                  curve: Curves.linearToEaseOut,
+                  child: const ResponsiveAppBar(),
+                ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
