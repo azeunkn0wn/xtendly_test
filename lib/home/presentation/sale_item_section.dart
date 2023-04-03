@@ -14,15 +14,16 @@ class SaleItems extends StatelessWidget {
   const SaleItems({
     super.key,
   });
-  static const bool useScrollingText = true;
+  final bool useScrollingText = true;
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
-        if (useScrollingText)
-          const SaleBannerScrollingText()
-        else
-          const SaleBanner(),
+        Visibility(
+          visible: useScrollingText,
+          replacement: const SaleBanner(),
+          child: const SaleBannerScrollingText(),
+        ),
         SizedBox(
           height: desktopOrMobileSize(context, 79.0, 54.0) as double,
         ),
