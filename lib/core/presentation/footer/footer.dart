@@ -137,18 +137,14 @@ class ContactDetails extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final double dimension = ResponsiveValue(
-      context,
-      defaultValue: 130.0,
-      valueWhen: [
-        const Condition.largerThan(name: DESKTOP, value: 130.0),
-        const Condition.smallerThan(name: DESKTOP, value: 100.0),
-      ],
-    ).value!;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Logo(size: Size.square(dimension)),
+        Logo(
+          size: Size.square(
+            desktopOrMobileSize(context, 130.0, 100.0) as double,
+          ),
+        ),
         const SizedBox(height: 30),
         Container(
           padding: const EdgeInsets.symmetric(horizontal: 20),
