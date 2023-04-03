@@ -4,3 +4,5 @@ const appBarHeight = 66.0;
 
 const topSpacingMobile = 15.0;
 const appBarHeightMobile = 53.0;
+
+const useScrollingText = true;

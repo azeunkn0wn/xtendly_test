@@ -3,8 +3,8 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:marquee/marquee.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 import 'package:xtendly_test/core/presentation/common_button.dart';
+import 'package:xtendly_test/core/presentation/widget_constants.dart';
 import 'package:xtendly_test/core/size_operations.dart';
-
 import 'package:xtendly_test/home/shared/provider.dart';
 
 const saleText =
@@ -14,15 +14,16 @@ class SaleItems extends StatelessWidget {
   const SaleItems({
     super.key,
   });
-  final bool useScrollingText = true;
+
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Visibility(
+        const Visibility(
+          // ignore: avoid_redundant_argument_values
           visible: useScrollingText,
-          replacement: const SaleBanner(),
-          child: const SaleBannerScrollingText(),
+          replacement: SaleBanner(),
+          child: SaleBannerScrollingText(),
         ),
         SizedBox(
           height: desktopOrMobileSize(context, 79.0, 54.0) as double,
