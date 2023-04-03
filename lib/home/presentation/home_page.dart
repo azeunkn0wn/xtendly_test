@@ -108,21 +108,3 @@ class _StateTestState extends ConsumerState<HomePage> {
     );
   }
 }
-
-class BodyContent extends StatelessWidget {
-  const BodyContent({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: const [
-        HeaderWidget(),
-        CategorySection(),
-        SaleItems(),
-        Footer(),
-      ],
-    );
-  }
-}
