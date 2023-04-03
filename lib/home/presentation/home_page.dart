@@ -41,12 +41,14 @@ class _StateTestState extends ConsumerState<HomePage> {
   }
 
   void _scrollListener() {
-    if (_controller.position.userScrollDirection == ScrollDirection.reverse) {
+    if (_controller.position.userScrollDirection == ScrollDirection.reverse &&
+        _appBarIsOpaque == 1) {
       setState(() {
         _appBarIsOpaque = 0;
       });
     }
-    if (_controller.position.userScrollDirection == ScrollDirection.forward) {
+    if (_controller.position.userScrollDirection == ScrollDirection.forward &&
+        _appBarIsOpaque != 1) {
       setState(() {
         _appBarIsVisible = true;
         _appBarIsOpaque = 1;
